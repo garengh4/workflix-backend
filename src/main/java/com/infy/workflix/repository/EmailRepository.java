@@ -1,8 +1,11 @@
 package com.infy.workflix.repository;
 
 import com.infy.workflix.entity.Email;
-import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.repository.CrudRepository;
 
-public interface EmailRepository extends JpaRepository<Email,String>{
+import java.util.List;
+
+public interface EmailRepository extends CrudRepository<Email,String>{
+
 
 }
