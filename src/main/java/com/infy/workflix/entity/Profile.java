@@ -7,11 +7,12 @@ import java.util.Set;
 @Entity
 @Table (name = "user_profile")
 public class Profile {
-
     @Id
     private String userProfileId;
     private String userFirstName;
     private String userLastName;
+
+    private String emailId;
 
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name ="user_profile_id")
@@ -39,6 +40,14 @@ public class Profile {
 
     public void setUserLastName(String userLastName) {
         this.userLastName = userLastName;
+    }
+
+    public String getEmailId() {
+        return emailId;
+    }
+
+    public void setEmailId(String emailId) {
+        this.emailId = emailId;
     }
 
     public Set<File> getFiles() {
