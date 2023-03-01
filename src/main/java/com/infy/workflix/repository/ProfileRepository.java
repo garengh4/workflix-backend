@@ -1,7 +1,12 @@
 package com.infy.workflix.repository;
 
 import com.infy.workflix.entity.Profile;
-import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.repository.CrudRepository;
 
-public interface ProfileRepository extends JpaRepository<Profile,String> {
+import java.util.List;
+
+public interface ProfileRepository extends CrudRepository<Profile,String> {
+
+    public List<Profile> findByEmailId(String emailID);
+
 }

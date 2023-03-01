@@ -19,6 +19,9 @@ public class ProfileDTO {
     @NotNull
     private String userLastName;
 
+    @NotNull
+    private String emailId;
+
     @Valid
     private Set<File> files;
 
@@ -44,6 +47,14 @@ public class ProfileDTO {
 
     public void setUserLastName(String userLastName) {
         this.userLastName = userLastName;
+    }
+
+    public String getEmailId() {
+        return emailId;
+    }
+
+    public void setEmailId(String emailId) {
+        this.emailId = emailId;
     }
 
     public Set<File> getFiles() {

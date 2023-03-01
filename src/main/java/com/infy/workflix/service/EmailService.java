@@ -1,11 +1,7 @@
 package com.infy.workflix.service;
 
 import com.infy.workflix.dto.EmailDTO;
-import com.infy.workflix.dto.ProfileDTO;
 import com.infy.workflix.exception.WorkflixException;
-import org.springframework.stereotype.Component;
-
-import java.util.Set;
 
 
 public interface EmailService {
