@@ -42,10 +42,13 @@ public class ProfileAPI {
         return new ResponseEntity<>(msg,HttpStatus.OK);
     }
 
-    @PutMapping(value ="/{userName}/update-profile")
-    public ResponseEntity<String> updateProfile() throws WorkflixException{
-        String msg =null;
-        return new ResponseEntity<>(msg,HttpStatus.OK);
+    @PutMapping(value ="/{userProfileId}/update-profile")
+    public ResponseEntity<String> updateProfile(@PathVariable String userProfileId, @RequestBody @Valid ProfileDTO profileDTO) throws WorkflixException{
+        logger.info("USER TRYING TO CHANGE PROFILE INFORMATION. USER PROFILE ID: "+ userProfileId);
+        String updateSuccessful = profileService.updateProfile(userProfileId,profileDTO.getUserFirstName(),profileDTO.getUserLastName());
+        updateSuccessful = environment.getProperty("ProfileAPI.PROFILE_UPDATE_SUCCESS") + updateSuccessful;
+        return new ResponseEntity<>(updateSuccessful,HttpStatus.OK);
+
     }
 
     @DeleteMapping(value = "/{userName}/delete-profile")

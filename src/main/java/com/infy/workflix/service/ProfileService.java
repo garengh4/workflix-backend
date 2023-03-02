@@ -9,8 +9,8 @@ import java.util.Set;
 public interface ProfileService {
 
     public String createProfile(ProfileDTO profileDTO) throws WorkflixException;
-    public String deletingProfile(String userName) throws WorkflixException;
-    public String updateProfile(String userName, String firstName, String lastName);
-    public Set<ProfileDTO> getProfilesByEmail(String emailId);
+    public String deletingProfile(String userProfileId) throws WorkflixException;
+    public String updateProfile(String userProfileId, String firstName, String lastName) throws WorkflixException;
+    public Set<ProfileDTO> getProfilesByEmail(String emailId) throws WorkflixException;
 
 }
