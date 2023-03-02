@@ -11,6 +11,7 @@ public class File {
     private long fileId;
 
     private String fileName;
+    private String userProfileId;
     private String descriptions;
     private String categoryName;
 
@@ -34,12 +35,28 @@ public class File {
         this.fileName = fileName;
     }
 
+    public String getUserProfileId() {
+        return userProfileId;
+    }
+
+    public void setUserProfileId(String userProfileId) {
+        this.userProfileId = userProfileId;
+    }
+
     public String getDescriptions() {
         return descriptions;
     }
 
     public void setDescriptions(String descriptions) {
         this.descriptions = descriptions;
+    }
+
+    public String getCategoryName() {
+        return categoryName;
+    }
+
+    public void setCategoryName(String categoryName) {
+        this.categoryName = categoryName;
     }
 
     public byte[] getFileData() {

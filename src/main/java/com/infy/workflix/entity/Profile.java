@@ -15,7 +15,7 @@ public class Profile {
     private String emailId;
 
     @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name ="user_profile_id")
+    @JoinColumn(name ="userProfileId")
     private Set<File> files;
 
     public String getUserProfileId() {
