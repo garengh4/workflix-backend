@@ -19,22 +19,27 @@ public class Profile {
     private Set<File> files;
 
     public String getUserProfileId() {
+
         return userProfileId;
     }
 
     public void setUserProfileId(String userProfileId) {
+
         this.userProfileId = userProfileId;
     }
 
     public String getUserFirstName() {
+
         return userFirstName;
     }
 
     public void setUserFirstName(String userFirstName) {
+
         this.userFirstName = userFirstName;
     }
 
     public String getUserLastName() {
+
         return userLastName;
     }
 
