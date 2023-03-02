@@ -12,7 +12,7 @@ public class LoggingAspect {
 
     private static Log logger = LogFactory.getLog(LoggingAspect.class);
 
-    @AfterThrowing(pointcut = "execution(* com.infy.ekart.service.*Impl.*(..))", throwing = "exception")
+    @AfterThrowing(pointcut = "execution(* com.infy.workflix.service.*Impl.*(..))", throwing = "exception")
     public void logExceptionFromService(Exception exception) {
         logger.error(exception.getMessage(), exception);
     }
