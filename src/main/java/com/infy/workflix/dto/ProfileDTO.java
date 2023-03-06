@@ -23,7 +23,7 @@ public class ProfileDTO {
     private String emailId;
 
     @Valid
-    private Set<File> files;
+    private Set<File> files; //Should be fileDTO, no?
 
     public String getUserProfileId() {
         return userProfileId;

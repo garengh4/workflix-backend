@@ -3,6 +3,7 @@ package com.infy.workflix.api;
 import java.util.Set;
 
 import javax.validation.Valid;
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
@@ -58,10 +59,9 @@ public class ProfileAPI {
     }
 
     @GetMapping(value = "{emailId}/profiles")
-    public ResponseEntity<Set<ProfileDTO>> getProfilesByEmail() throws WorkflixException{
-        Set<ProfileDTO> profiles = null;
-
-        return new ResponseEntity<>(profiles,HttpStatus.OK);
+    public ResponseEntity<Set<ProfileDTO>> getProfilesByEmail(@PathVariable("emailId") @Email(message = "{invalid.email.format}") String emailId)
+            throws WorkflixException{
+        return new ResponseEntity<Set<ProfileDTO>>(profileService.getProfilesByEmail(emailId),HttpStatus.OK);
     }
 
 
