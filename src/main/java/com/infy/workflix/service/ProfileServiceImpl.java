@@ -8,8 +8,10 @@ import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @Service (value ="profileService")
 @Transactional
@@ -45,10 +47,16 @@ public class ProfileServiceImpl implements ProfileService{
     }
 
     @Override
-    public Set<ProfileDTO> getProfilesByEmail(String emailId) throws WorkflixException{
-        Set<ProfileDTO> profiles = null;
+    public Set<ProfileDTO> getProfilesByEmail(String emailId) throws WorkflixException {
+        Optional<List<Profile>> optionalProfiles = Optional.of(profileRepository.findByEmailId(emailId)); //toLowerCase() ? Probably not.
+        List<Profile> profiles = optionalProfiles.orElseThrow(() -> new WorkflixException("EmailService.PROFILE_NOT_FOUND"));
 
-        return profiles;
+        Set<ProfileDTO> profilesDTO = profiles
+                .stream()
+                .map((profile) -> ProfileService.profileDTOFrom(profile))
+                .collect(Collectors.toSet());
+
+        return profilesDTO;
     }
 
 
