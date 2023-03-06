@@ -28,8 +28,12 @@ public class ProfileServiceImpl implements ProfileService{
 
     @Override
     public String deletingProfile(String userProfileId) throws WorkflixException{
-        String msg = null;
-        return msg;
+
+        Profile profile = profileRepository.findById(userProfileId).orElseThrow(
+                () -> new WorkflixException("ProfileService.PROFILE_NOT_FOUND")
+        );
+        profileRepository.delete(profile);
+        return userProfileId;
     }
 
     @Override

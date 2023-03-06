@@ -52,10 +52,12 @@ public class ProfileAPI {
 
     }
 
-    @DeleteMapping(value = "/{userName}/delete-profile")
-    public ResponseEntity<String> deleteProfile() throws WorkflixException{
-        String msg =null;
-        return new ResponseEntity<>(msg,HttpStatus.OK);
+    @DeleteMapping(value = "/{userProfileId}/delete-profile")
+    public ResponseEntity<String> deleteProfile(@PathVariable String userProfileId) throws WorkflixException{
+        logger.info("DELETING PROFILE: "+ userProfileId);
+        profileService.deletingProfile(userProfileId);
+        String deleteSuccess = environment.getProperty("ProfileAPI.PROFILE_DELETE_SUCCESS");
+        return new ResponseEntity<>(deleteSuccess,HttpStatus.OK);
     }
 
     @GetMapping(value = "{emailId}/profiles")
