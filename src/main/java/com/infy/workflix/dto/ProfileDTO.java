@@ -1,6 +1,6 @@
 package com.infy.workflix.dto;
 
-import com.infy.workflix.entity.File;
+import com.infy.workflix.entity.InputFile;
 
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
@@ -23,7 +23,7 @@ public class ProfileDTO {
     private String emailId;
 
     @Valid
-    private Set<File> files; //Should be fileDTO, no?
+    private Set<InputFile> files; //Should be fileDTO, no?
 
     public String getUserProfileId() {
         return userProfileId;
@@ -57,11 +57,11 @@ public class ProfileDTO {
         this.emailId = emailId;
     }
 
-    public Set<File> getFiles() {
+    public Set<InputFile> getFiles() {
         return files;
     }
 
-    public void setFiles(Set<File> files) {
+    public void setFiles(Set<InputFile> files) {
         this.files = files;
     }
 }

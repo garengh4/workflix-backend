@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 
 @Entity
 @Table (name = "files")
-public class File {
+public class InputFile {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -15,9 +15,9 @@ public class File {
     private String descriptions;
     private String categoryName;
 
-    @Lob
-    @Column (name = "file_data")
-    private byte[] fileData;
+    private String fileUrl;
+
+
 
     public long getFileId() {
         return fileId;
@@ -59,11 +59,14 @@ public class File {
         this.categoryName = categoryName;
     }
 
-    public byte[] getFileData() {
-        return fileData;
+
+    public String getFileUrl() {
+        return fileUrl;
     }
 
-    public void setFileData(byte[] fileData) {
-        this.fileData = fileData;
+    public void setFileUrl(String fileUrl) {
+        this.fileUrl = fileUrl;
     }
+
+
 }
