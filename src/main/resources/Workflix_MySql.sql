@@ -13,13 +13,13 @@ CREATE TABLE user_profile(
     user_last_name VARCHAR(50) NOT NULL);
 
 CREATE TABLE files(
-	file_id BIGINT PRIMARY KEY,
+	file_id BIGINT AUTO_INCREMENT PRIMARY KEY,
 	file_name VARCHAR(50) NOT NULL,
     user_profile_id VARCHAR(50),
 	FOREIGN KEY (user_profile_id) REFERENCES user_profile(user_profile_id),
 	category_name VARCHAR(50),
 	descriptions VARCHAR(100),
-	file_data LONGBLOB NOT NULL);
+	file_url VARCHAR(255));
     
 -- CREATE TABLE file_comment(
 -- 	comment_id LONG AUTO_INCREMENT PRIMARY KEY,

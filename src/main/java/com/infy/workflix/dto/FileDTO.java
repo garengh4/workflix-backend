@@ -17,8 +17,12 @@ public class FileDTO {
     @NotNull (message ="{file.category.name.absent")
     private String categoryName;
 
-    @NotNull (message = "{file.data.absent}")
-    private byte[] fileData;
+    private String fileUrl;
+    public FileDTO(String fileName, String fileUrl) {
+        this.fileName=fileName;
+        this.fileUrl = fileUrl;
+    }
+
 
     public long getFileId() {
         return fileId;
@@ -60,11 +64,14 @@ public class FileDTO {
         this.categoryName = categoryName;
     }
 
-    public byte[] getFileData() {
-        return fileData;
+    public String getFileUrl() {
+        return fileUrl;
     }
 
-    public void setFileData(byte[] fileData) {
-        this.fileData = fileData;
+    public void setFileUrl(String fileUrl) {
+        this.fileUrl = fileUrl;
     }
+
+
+
 }

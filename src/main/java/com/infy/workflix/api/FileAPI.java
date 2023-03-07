@@ -14,10 +14,12 @@ import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.web.multipart.MultipartFile;
 
 @CrossOrigin
 @RequestMapping(value = "/file-api")
@@ -36,10 +38,11 @@ public class FileAPI {
 
     static Log logger = LogFactory.getLog(ProfileAPI.class);
 
-    @PostMapping(value= "/upload")
-    public ResponseEntity<String> uploadFile(@Valid @RequestBody FileDTO fileDTO) throws WorkflixException{
-        String msg=null;
-        return new ResponseEntity<>(msg, HttpStatus.OK);
+    @PostMapping(value= "/upload",consumes = {MediaType.MULTIPART_FORM_DATA_VALUE})
+    public ResponseEntity<String> uploadFile(@RequestParam("file") MultipartFile file, @RequestParam("category") String categoryName,
+                                              @RequestParam("descriptions") String descriptions, @RequestParam("profileId") String profileId ) throws WorkflixException{
+        String msg=fileService.uploadFile(file,categoryName,descriptions,profileId);
+        return new ResponseEntity<>(msg,HttpStatus.OK);
     }
 
     @GetMapping(value="file/Id/{fileId}/")

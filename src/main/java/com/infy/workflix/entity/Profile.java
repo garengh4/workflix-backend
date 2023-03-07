@@ -16,7 +16,7 @@ public class Profile {
 
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name ="userProfileId")
-    private Set<File> files;
+    private Set<InputFile> files;
 
     public String getUserProfileId() {
 
@@ -55,11 +55,11 @@ public class Profile {
         this.emailId = emailId;
     }
 
-    public Set<File> getFiles() {
+    public Set<InputFile> getFiles() {
         return files;
     }
 
-    public void setFiles(Set<File> files) {
+    public void setFiles(Set<InputFile> files) {
         this.files = files;
     }
 }
