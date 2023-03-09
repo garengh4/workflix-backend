@@ -1,8 +1,7 @@
 package com.infy.workflix.entity;
 
 
-import jakarta.persistence.*;
-
+import javax.persistence.*;
 import java.util.Set;
 
 @Entity
