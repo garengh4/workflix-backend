@@ -1,11 +1,11 @@
 package com.infy.workflix.entity;
 
-import jakarta.persistence.*;
 
+import javax.persistence.*;
 import java.util.Set;
 
 @Entity
-@Table (name = "user_profile")
+@Table(name = "user_profile")
 public class Profile {
     @Id
     private String userProfileId;

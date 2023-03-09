@@ -29,7 +29,7 @@ public class DataBucketUtil {
                 return new FileDTO(blob.getName(), blob.getMediaLink());
             }
         }catch(Exception e) {
-            throw new FileWriteException("An error occured while storing data to GCS");
+            throw new FileWriteException("An error occurred while storing data to GCS");
         }
 
         return new FileDTO("error","error");
