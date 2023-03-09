@@ -6,15 +6,13 @@ import com.infy.workflix.exception.FileWriteException;
 import com.infy.workflix.exception.WorkflixException;
 import com.infy.workflix.repository.FileRepository;
 import com.infy.workflix.utility.DataBucketUtil;
-import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.transaction.Transactional;
 import java.io.File;
-import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.Arrays;
 import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -29,27 +27,27 @@ public class FileServiceImpl implements FileService {
     @Autowired
     private DataBucketUtil dataBucketUtil;
 
-    @Override
-    public String uploadFile(MultipartFile file, String categoryName, String descriptions, String profileId) throws WorkflixException {
-
-            String originalFileName = file.getOriginalFilename();
-            Path path = new File(originalFileName).toPath();
-            FileDTO fileDTO;
-            try {
-               // String contentType = Files.probeContentType(path);
-                fileDTO= dataBucketUtil.uploadFile(file, originalFileName);
-            } catch (Exception e) {
-                throw new FileWriteException("Error occurred while uploading");
-            }
-       InputFile inputFile=new InputFile();
-        inputFile.setFileName(fileDTO.getFileName());
-        inputFile.setFileUrl(fileDTO.getFileUrl());
-        inputFile.setCategoryName(categoryName);
-        inputFile.setDescriptions(descriptions);
-        inputFile.setUserProfileId(profileId);
-        fileRepository.save(inputFile);
-        return fileDTO.getFileUrl();
-    }
+//    @Override
+//    public String uploadFile(MultipartFile file, String categoryName, String descriptions, String profileId) throws WorkflixException {
+//
+//            String originalFileName = file.getOriginalFilename();
+//            Path path = new File(originalFileName).toPath();
+//            FileDTO fileDTO;
+//            try {
+//               // String contentType = Files.probeContentType(path);
+//                fileDTO= dataBucketUtil.uploadFile(file, originalFileName);
+//            } catch (Exception e) {
+//                throw new FileWriteException("Error occurred while uploading");
+//            }
+//       InputFile inputFile=new InputFile();
+//        inputFile.setFileName(fileDTO.getFileName());
+//        inputFile.setFileUrl(fileDTO.getFileUrl());
+//        inputFile.setCategoryName(categoryName);
+//        inputFile.setDescriptions(descriptions);
+//        inputFile.setUserProfileId(profileId);
+//        fileRepository.save(inputFile);
+//        return fileDTO.getFileUrl();
+//    }
 
     @Override
     public FileDTO getFileByFileId(long fileId) throws WorkflixException {

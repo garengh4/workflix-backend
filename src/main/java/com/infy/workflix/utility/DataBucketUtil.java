@@ -1,5 +1,6 @@
 package com.infy.workflix.utility;
 
+
 import com.google.cloud.storage.*;
 import com.infy.workflix.dto.FileDTO;
 import com.infy.workflix.exception.FileWriteException;
@@ -12,25 +13,25 @@ import java.io.File;
 import java.io.FileOutputStream;
 @Component
 public class DataBucketUtil {
-    @Autowired
-    private Storage storage;
-    public FileDTO uploadFile(MultipartFile multipartFile, String fileName) {
-
-        try {
-            byte[] fileData = FileUtils.readFileToByteArray(convertFile(multipartFile));
-            BlobId blobId=BlobId.of("gcp-demo-2023",fileName);
-            BlobInfo blobInfo=BlobInfo.newBuilder(blobId).build();
-            Blob blob=storage.create(blobInfo, fileData);
-            if(blob != null){
-
-                return new FileDTO(blob.getName(), blob.getMediaLink());
-            }
-        }catch(Exception e) {
-            throw new FileWriteException("An error occured while storing data to GCS");
-        }
-
-        return new FileDTO("error","error");
-    }
+//    @Autowired
+//    private Storage storage;
+//    public FileDTO uploadFile(MultipartFile multipartFile, String fileName) {
+//
+//        try {
+//            byte[] fileData = FileUtils.readFileToByteArray(convertFile(multipartFile));
+//            BlobId blobId=BlobId.of("gcp-demo-2023",fileName);
+//            BlobInfo blobInfo=BlobInfo.newBuilder(blobId).build();
+//            Blob blob=storage.create(blobInfo, fileData);
+//            if(blob != null){
+//
+//                return new FileDTO(blob.getName(), blob.getMediaLink());
+//            }
+//        }catch(Exception e) {
+//            throw new FileWriteException("An error occurred while storing data to GCS");
+//        }
+//
+//        return new FileDTO("error","error");
+//    }
 
     private File convertFile(MultipartFile file) {
 

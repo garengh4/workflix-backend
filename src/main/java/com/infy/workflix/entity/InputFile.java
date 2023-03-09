@@ -1,9 +1,9 @@
 package com.infy.workflix.entity;
 
-import jakarta.persistence.*;
+import javax.persistence.*;
 
 @Entity
-@Table (name = "files")
+@Table(name = "files")
 public class InputFile {
 
     @Id
