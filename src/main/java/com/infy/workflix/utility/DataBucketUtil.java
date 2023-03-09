@@ -1,9 +1,6 @@
 package com.infy.workflix.utility;
 
-import com.google.cloud.storage.Blob;
-import com.google.cloud.storage.BlobId;
-import com.google.cloud.storage.BlobInfo;
-import com.google.cloud.storage.Storage;
+import com.google.cloud.storage.*;
 import com.infy.workflix.dto.FileDTO;
 import com.infy.workflix.exception.FileWriteException;
 import org.apache.commons.io.FileUtils;
@@ -49,6 +46,31 @@ public class DataBucketUtil {
         }catch (Exception e){
             throw new FileWriteException("An error has occurred while converting the file");
         }
+    }
+
+    public String updateFile(String oldFileName, String newFileName){
+        BlobId source=BlobId.of("gcp-demo-2023",oldFileName);
+        BlobId target=BlobId.of("gcp-demo-2023",newFileName);
+        Storage.BlobTargetOption precondition;
+        if(storage.get("gcp-demo-2023", newFileName)==null){
+            precondition=Storage.BlobTargetOption.doesNotExist();
+        }else {
+            precondition = Storage.BlobTargetOption.generationMatch(
+                    storage.get("gcp-demo-2023", newFileName).getGeneration());
+        }
+        storage.copy(
+                Storage.CopyRequest.newBuilder().setSource(source).setTarget(target, precondition).build());
+        Blob copiedObject =storage.get(target);
+        storage.get(source).delete();
+        return copiedObject.getMediaLink();
+    }
+    public String deleteFile(String fileName){
+        BlobId blob=BlobId.of("gcp-demo-2023",fileName);
+        boolean deleted=storage.delete(blob);
+        if(!deleted){
+             throw new FileWriteException("An error has occurred while deleting the file");
+        }
+        return " delete successfully";
     }
 
 }

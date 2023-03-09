@@ -15,7 +15,9 @@ import java.io.File;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Arrays;
+import java.util.Optional;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @Service (value ="fileService")
 @Transactional
@@ -51,37 +53,60 @@ public class FileServiceImpl implements FileService {
 
     @Override
     public FileDTO getFileByFileId(long fileId) throws WorkflixException {
-        FileDTO fileDTO = null;
+        Optional<InputFile> optionalFiles = Optional.of(fileRepository.findByFileId(fileId));
+        InputFile file = optionalFiles.orElseThrow(() -> new WorkflixException("FileService.FILE_NOT_FOUND"));
+        FileDTO fileDTO=FileService.fileDTOFrom(file);
         return fileDTO;
     }
 
     @Override
     public FileDTO getFileByFileName(String fileName) throws WorkflixException {
-        FileDTO fileDTO = null;
+        Optional<InputFile> optionalFiles = Optional.of(fileRepository.findByFileName(fileName));
+        InputFile file = optionalFiles.orElseThrow(() -> new WorkflixException("FileService.FILE_NOT_FOUND"));
+        FileDTO fileDTO=FileService.fileDTOFrom(file);
         return fileDTO;
     }
 
     @Override
     public String updateFileName(String oldFileName, String newFileName) throws WorkflixException{
-        String msg = null;
-        return msg;
+        Optional<InputFile> optionalFiles = Optional.of(fileRepository.findByFileName(oldFileName));
+        InputFile file = optionalFiles.orElseThrow(() -> new WorkflixException("FileService.FILE_NOT_FOUND"));
+        file.setFileName(newFileName);
+        String newUrl = dataBucketUtil.updateFile(oldFileName,newFileName);
+        file.setFileUrl(newUrl);
+        return newFileName+" updated!";
     }
     @Override
     public Set<FileDTO> getFilesByUserProfileId(String userProfileId) throws WorkflixException {
-        Set<FileDTO> fileDTOS = null;
-        return fileDTOS;
+        Optional<Set<InputFile>> optionalFiles = Optional.of(fileRepository.findByUserProfileId(userProfileId));
+        Set<InputFile> fileList = optionalFiles.orElseThrow(() -> new WorkflixException("FileService.FILE_NOT_FOUND"));
+
+        Set<FileDTO> fileDTO = fileList
+                .stream()
+                .map((file) -> FileService.fileDTOFrom(file))
+                .collect(Collectors.toSet());
+        return fileDTO;
     }
 
     @Override
     public Set<FileDTO> getFilesByCategoryName(String categoryName) throws WorkflixException {
-        Set<FileDTO> fileDTOS = null;
-        return fileDTOS;
+        Optional<Set<InputFile>> optionalFiles = Optional.of(fileRepository.findByCategoryName(categoryName));
+        Set<InputFile> fileList = optionalFiles.orElseThrow(() -> new WorkflixException("FileService.FILE_NOT_FOUND"));
+
+        Set<FileDTO> fileDTO = fileList
+                .stream()
+                .map((file) -> FileService.fileDTOFrom(file))
+                .collect(Collectors.toSet());
+        return fileDTO;
     }
 
     @Override
     public String deleteFile(String fileName) throws WorkflixException {
-        String msg = null;
-        return msg;
+        Optional<InputFile> optionalFiles = Optional.of(fileRepository.findByFileName(fileName));
+        InputFile file = optionalFiles.orElseThrow(() -> new WorkflixException("FileService.FILE_NOT_FOUND"));
+        fileRepository.delete(file);
+        String msg=dataBucketUtil.deleteFile(fileName);
+        return fileName+msg;
     }
 }
 

@@ -47,37 +47,35 @@ public class FileAPI {
 
     @GetMapping(value="file/Id/{fileId}/")
     public ResponseEntity<FileDTO> getFileByFileId(@PathVariable long fileId) throws WorkflixException{
-        FileDTO fileDTO = null;
+        FileDTO fileDTO = fileService.getFileByFileId(fileId);
         return new ResponseEntity<>(fileDTO,HttpStatus.OK);
     }
 
     @GetMapping(value="file/name/{fileName}/")
     public ResponseEntity<FileDTO> getFileByFileName (@PathVariable String fileName) throws WorkflixException{
-        FileDTO fileDTO = null;
+        FileDTO fileDTO = fileService.getFileByFileName(fileName);
         return new ResponseEntity<>(fileDTO,HttpStatus.OK);
     }
 
     @PutMapping(value="file/update/{fileName}")
-    public ResponseEntity<String> updateFileName (@PathVariable String fileName, @RequestBody String newFileName){
-        String msg = null;
+    public ResponseEntity<String> updateFileName (@PathVariable String fileName,@RequestParam("newFileName") String newFileName)throws WorkflixException{
+        String msg=fileService.updateFileName(fileName,newFileName);
         return new ResponseEntity<>(msg, HttpStatus.OK);
     }
 
     @GetMapping(value="files/userProfile/{userProfileId}/")
     public ResponseEntity<Set<FileDTO>> getFilesByUserProfileId(@PathVariable String userProfileId) throws WorkflixException{
-        Set<FileDTO> fileDTOS = null;
-        return new ResponseEntity<>(fileDTOS,HttpStatus.OK);
+        return new ResponseEntity<>(fileService.getFilesByCategoryName(userProfileId),HttpStatus.OK);
     }
 
     @GetMapping(value="files/categoryName/{categoryName}/")
     public ResponseEntity<Set<FileDTO>> getFilesByCategoryName(@PathVariable String categoryName) throws WorkflixException{
-        Set<FileDTO> fileDTOS = null;
-        return new ResponseEntity<>(fileDTOS,HttpStatus.OK);
+        return new ResponseEntity<>(fileService.getFilesByCategoryName(categoryName),HttpStatus.OK);
     }
 
     @DeleteMapping(value="file/delete/{fileName}/")
     public ResponseEntity<String> deleteFile (@PathVariable String fileName) throws WorkflixException{
-        String msg=null;
+        String msg=fileService.deleteFile(fileName);
         return new ResponseEntity<>(msg, HttpStatus.OK);
     }
 
