@@ -1,5 +1,5 @@
-create schema if not exists workflix;
-use workflix;
+create schema if not exists Workflix;
+use Workflix;
 
 CREATE TABLE email(
 	email_id VARCHAR(50) PRIMARY KEY,
@@ -20,7 +20,7 @@ CREATE TABLE files(
 	category_name VARCHAR(50),
 	descriptions VARCHAR(100),
 	file_url VARCHAR(255));
-    
+
 -- CREATE TABLE file_comment(
 -- 	comment_id LONG AUTO_INCREMENT PRIMARY KEY,
 --     comment_text VARCHAR(200),
