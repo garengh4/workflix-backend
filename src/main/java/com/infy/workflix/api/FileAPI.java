@@ -41,8 +41,7 @@ public class FileAPI {
     @PostMapping(value= "/upload",consumes = {MediaType.MULTIPART_FORM_DATA_VALUE})
     public ResponseEntity<String> uploadFile(@RequestParam("file") MultipartFile file, @RequestParam("category") String categoryName,
                                               @RequestParam("descriptions") String descriptions, @RequestParam("profileId") String profileId ) throws WorkflixException{
-//        String msg=fileService.uploadFile(file,categoryName,descriptions,profileId);
-        String msg = null;
+        String msg=fileService.uploadFile(file,categoryName,descriptions,profileId);
 
         return new ResponseEntity<>(msg,HttpStatus.OK);
     }

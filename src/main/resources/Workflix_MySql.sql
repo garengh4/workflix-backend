@@ -1,5 +1,5 @@
-create schema if not exists workflix;
-use workflix;
+create schema if not exists Workflix;
+use Workflix;
 
 CREATE TABLE email(
 	email_id VARCHAR(50) PRIMARY KEY,

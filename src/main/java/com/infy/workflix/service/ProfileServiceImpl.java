@@ -22,8 +22,21 @@ public class ProfileServiceImpl implements ProfileService{
 
     @Override
     public String createProfile(ProfileDTO profileDTO) throws WorkflixException{
-        String msg = null;
-        return msg;
+        String registeredWithProfileId = null;
+
+        boolean isProfileAvailable = profileRepository.findById(profileDTO.getUserProfileId()).isEmpty();
+        if(isProfileAvailable){
+            Profile profile = new Profile();
+            profile.setUserProfileId(profileDTO.getUserProfileId());
+            profile.setUserFirstName(profileDTO.getUserFirstName());
+            profile.setUserLastName(profileDTO.getUserLastName());
+            profile.setEmailId(profileDTO.getEmailId());
+            profileRepository.save(profile);
+            registeredWithProfileId = profile.getUserProfileId();
+        }else{
+            throw new WorkflixException("profileService.PROFILE_ID_ALREADY_IN_USE");
+        }
+        return registeredWithProfileId;
     }
 
     @Override
