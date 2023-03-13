@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service(value = "loginService")
@@ -50,16 +51,18 @@ public class LoginServiceImpl implements LoginService {
 
     @Override
     public String registerNewLogin(LoginDTO loginDTO) throws WorkflixException {
-        Boolean isLoginAvailable = loginRepository.findById(loginDTO.getLoginId()).isEmpty();
 
-        if(isLoginAvailable){
+        Optional<Login> isLoginAvailable = loginRepository.findById(loginDTO.getLoginId());
+
+        if(isLoginAvailable.equals(null)){
             Login newlogin = new Login();
             newlogin.setLoginId(loginDTO.getLoginId());
             newlogin.setPassword(loginDTO.getPassword());
             loginRepository.save(newlogin);
-        }else{
+        } else {
             throw new WorkflixException("EmailService.EMAIL_ID_ALREADY_IN_USE");
         }
+
         return loginDTO.getLoginId();
     }
 }
