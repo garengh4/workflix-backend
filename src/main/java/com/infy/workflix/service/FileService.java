@@ -9,7 +9,7 @@ import java.util.Set;
 
 public interface FileService {
 
-//    public String uploadFile(MultipartFile file, String categoryName, String descriptions, String profileId) throws WorkflixException;
+    public String uploadFile(MultipartFile file, String categoryName, String descriptions, String profileId) throws WorkflixException;
     public FileDTO getFileByFileId(long fileId) throws WorkflixException;
     public FileDTO getFileByFileName (String fileName) throws WorkflixException;
     public String updateFileName (String oldFileName,String newFileName) throws WorkflixException;

@@ -27,27 +27,27 @@ public class FileServiceImpl implements FileService {
     @Autowired
     private DataBucketUtil dataBucketUtil;
 
-//    @Override
-//    public String uploadFile(MultipartFile file, String categoryName, String descriptions, String profileId) throws WorkflixException {
-//
-//            String originalFileName = file.getOriginalFilename();
-//            Path path = new File(originalFileName).toPath();
-//            FileDTO fileDTO;
-//            try {
-//               // String contentType = Files.probeContentType(path);
-//                fileDTO= dataBucketUtil.uploadFile(file, originalFileName);
-//            } catch (Exception e) {
-//                throw new FileWriteException("Error occurred while uploading");
-//            }
-//       InputFile inputFile=new InputFile();
-//        inputFile.setFileName(fileDTO.getFileName());
-//        inputFile.setFileUrl(fileDTO.getFileUrl());
-//        inputFile.setCategoryName(categoryName);
-//        inputFile.setDescriptions(descriptions);
-//        inputFile.setUserProfileId(profileId);
-//        fileRepository.save(inputFile);
-//        return fileDTO.getFileUrl();
-//    }
+    @Override
+    public String uploadFile(MultipartFile file, String categoryName, String descriptions, String profileId) throws WorkflixException {
+
+            String originalFileName = file.getOriginalFilename();
+            Path path = new File(originalFileName).toPath();
+            FileDTO fileDTO;
+            try {
+               // String contentType = Files.probeContentType(path);
+                fileDTO= dataBucketUtil.uploadFile(file, originalFileName);
+            } catch (Exception e) {
+                throw new FileWriteException("Error occurred while uploading");
+            }
+       InputFile inputFile=new InputFile();
+        inputFile.setFileName(fileDTO.getFileName());
+        inputFile.setFileUrl(fileDTO.getFileUrl());
+        inputFile.setCategoryName(categoryName);
+        inputFile.setDescriptions(descriptions);
+        inputFile.setUserProfileId(profileId);
+        fileRepository.save(inputFile);
+        return fileDTO.getFileUrl();
+    }
 
     @Override
     public FileDTO getFileByFileId(long fileId) throws WorkflixException {
