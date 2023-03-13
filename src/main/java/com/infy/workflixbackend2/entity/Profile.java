@@ -1,53 +1,52 @@
 package com.infy.workflixbackend2.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
-@Table(name = "user_profile")
+@Table(name = "profile")
 public class Profile {
     @Id
-    private String userProfileId;
-    private String userFirstName;
-    private String userLastName;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "profile_id")
+    private Integer profileId;
 
-    private String emailId;
+    @Column(name="first_name")
+    private String firstName;
+    @Column(name="last_name")
+    private String lastName;
+    @Column(name="login_id")
+    private String loginId;
 
-    public String getUserProfileId() {
-        return userProfileId;
+    public Integer getProfileId() {
+        return profileId;
     }
 
-    public void setUserProfileId(String userProfileId) {
-
-        this.userProfileId = userProfileId;
+    public void setProfileId(Integer profileId) {
+        this.profileId = profileId;
     }
 
-    public String getUserFirstName() {
-
-        return userFirstName;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setUserFirstName(String userFirstName) {
-
-        this.userFirstName = userFirstName;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
-    public String getUserLastName() {
-
-        return userLastName;
+    public String getLastName() {
+        return lastName;
     }
 
-    public void setUserLastName(String userLastName) {
-        this.userLastName = userLastName;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
-    public String getEmailId() {
-        return emailId;
+    public String getLoginId() {
+        return loginId;
     }
 
-    public void setEmailId(String emailId) {
-        this.emailId = emailId;
+    public void setLoginId(String loginId) {
+        this.loginId = loginId;
     }
 }
 

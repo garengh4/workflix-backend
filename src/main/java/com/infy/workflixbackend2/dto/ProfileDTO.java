@@ -1,54 +1,42 @@
 package com.infy.workflixbackend2.dto;
 
-import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
 
 public class ProfileDTO {
+    private Integer profileId;
+    private String firstName;
+    private String lastName;
+    private String loginId;
 
-    @NotNull
-    @Pattern(regexp = "[A-Za-z0-9-_]{1,50}", message = "{invalid.user.profile.id.format}")
-    private String userProfileId;
-
-    @NotNull
-    private String userFirstName;
-
-    @NotNull
-    private String userLastName;
-
-    @NotNull
-    private String emailId;
-
-    public String getUserProfileId() {
-        return userProfileId;
+    public Integer getProfileId() {
+        return profileId;
     }
 
-    public void setUserProfileId(String userProfileId) {
-        this.userProfileId = userProfileId;
+    public void setProfileId(Integer profileId) {
+        this.profileId = profileId;
     }
 
-    public String getUserFirstName() {
-        return userFirstName;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setUserFirstName(String userFirstName) {
-        this.userFirstName = userFirstName;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
-    public String getUserLastName() {
-        return userLastName;
+    public String getLastName() {
+        return lastName;
     }
 
-    public void setUserLastName(String userLastName) {
-        this.userLastName = userLastName;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
-    public String getEmailId() {
-        return emailId;
+    public String getLoginId() {
+        return loginId;
     }
 
-    public void setEmailId(String emailId) {
-        this.emailId = emailId;
+    public void setLoginId(String loginId) {
+        this.loginId = loginId;
     }
-
 }
