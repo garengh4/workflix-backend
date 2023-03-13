@@ -54,13 +54,13 @@ public class LoginServiceImpl implements LoginService {
 
         Optional<Login> isLoginAvailable = loginRepository.findById(loginDTO.getLoginId());
 
-        if(isLoginAvailable.equals(null)){
+        if (isLoginAvailable.isPresent()) {
+            throw new WorkflixException("EmailService.EMAIL_ID_ALREADY_IN_USE");
+        } else {
             Login newlogin = new Login();
             newlogin.setLoginId(loginDTO.getLoginId());
             newlogin.setPassword(loginDTO.getPassword());
             loginRepository.save(newlogin);
-        } else {
-            throw new WorkflixException("EmailService.EMAIL_ID_ALREADY_IN_USE");
         }
 
         return loginDTO.getLoginId();
