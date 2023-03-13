@@ -1,6 +1,7 @@
 package com.infy.workflixbackend2.api;
 
 import com.infy.workflixbackend2.dto.LoginDTO;
+import com.infy.workflixbackend2.entity.Login;
 import com.infy.workflixbackend2.exception.WorkflixException;
 import com.infy.workflixbackend2.service.LoginService;
 import org.apache.commons.logging.Log;
@@ -12,6 +13,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
+import java.util.List;
 
 @CrossOrigin
 @RequestMapping(value = "/login-api")
@@ -34,6 +36,11 @@ public class LoginAPI {
         logger.info("USER TRYING TO LOGIN, VALIDATING CREDENTIALS. USER EMAIL ID: " + loginDTO.getLoginId());
         LoginDTO loginDTOFromDB = loginService.authenticateLogin(loginDTO.getLoginId(), loginDTO.getPassword());
         return new ResponseEntity<>(loginDTOFromDB, HttpStatus.OK);
+    }
+
+    @GetMapping
+    public List<Login> allLogins(){
+        return loginService.getAllLogins();
     }
 
     @PostMapping(value = "/register")

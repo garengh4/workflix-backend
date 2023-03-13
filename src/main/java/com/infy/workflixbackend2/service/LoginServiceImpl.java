@@ -44,6 +44,11 @@ public class LoginServiceImpl implements LoginService {
     }
 
     @Override
+    public List<Login> getAllLogins() {
+        return loginRepository.findAll();
+    }
+
+    @Override
     public String registerNewLogin(LoginDTO loginDTO) throws WorkflixException {
         Boolean isLoginAvailable = loginRepository.findById(loginDTO.getLoginId()).isEmpty();
 
