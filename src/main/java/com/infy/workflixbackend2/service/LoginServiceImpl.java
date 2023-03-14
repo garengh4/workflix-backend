@@ -62,7 +62,6 @@ public class LoginServiceImpl implements LoginService {
             newlogin.setPassword(loginDTO.getPassword());
             loginRepository.save(newlogin);
         }
-
         return loginDTO.getLoginId();
     }
 }
