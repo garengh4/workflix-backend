@@ -16,10 +16,6 @@ public class Login {
     @Column(name="password")
     private String password;
 
-//    @OneToMany(cascade = CascadeType.ALL)
-//    @JoinColumn(name = "login_id")
-//    private List<Profile> loginProfiles;
-
     public String getLoginId() {
         return loginId;
     }
@@ -36,11 +32,4 @@ public class Login {
         this.password = password;
     }
 
-//    public List<Profile> getLoginProfiles() {
-//        return loginProfiles;
-//    }
-//
-//    public void setLoginProfiles(List<Profile> loginProfiles) {
-//        this.loginProfiles = loginProfiles;
-//    }
 }
