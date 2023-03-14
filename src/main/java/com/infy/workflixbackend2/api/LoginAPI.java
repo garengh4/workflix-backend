@@ -29,11 +29,10 @@ public class LoginAPI {
 
     static Log logger = LogFactory.getLog(LoginAPI.class);
 
-
     @PostMapping(value = "/login")
     public ResponseEntity<LoginDTO> authenticateLogin(@Valid @RequestBody LoginDTO loginDTO) throws WorkflixException {
 
-        logger.info("USER TRYING TO LOGIN, VALIDATING CREDENTIALS. USER EMAIL ID: " + loginDTO.getLoginId());
+        logger.info("USER TRYING TO LOGIN, VALIDATING CREDENTIALS. USER LOGIN ID: " + loginDTO.getLoginId());
         LoginDTO loginDTOFromDB = loginService.authenticateLogin(loginDTO.getLoginId(), loginDTO.getPassword());
         return new ResponseEntity<>(loginDTOFromDB, HttpStatus.OK);
     }
@@ -46,13 +45,9 @@ public class LoginAPI {
     @PostMapping(value = "/register")
     public ResponseEntity<String> registerLogin(@Valid @RequestBody LoginDTO loginDTO) throws WorkflixException{
 
-        logger.info("USER TRYING TO REGISTER. USER EMAIL ID: " + loginDTO.getLoginId());
-        String registeredWithEmailID = loginService.registerNewLogin(loginDTO);
-        registeredWithEmailID = environment.getProperty("EmailAPI.USER_REGISTRATION_SUCCESS") + registeredWithEmailID;
-        return new ResponseEntity<>(registeredWithEmailID,HttpStatus.OK);
+        logger.info("USER TRYING TO REGISTER. USER LOGIN ID: " + loginDTO.getLoginId());
+        String registeredWithLoginID = loginService.registerNewLogin(loginDTO);
+        registeredWithLoginID = environment.getProperty("LoginAPI.USER_REGISTRATION_SUCCESS") + registeredWithLoginID;
+        return new ResponseEntity<>(registeredWithLoginID,HttpStatus.OK);
     }
-
-
-
-
 }

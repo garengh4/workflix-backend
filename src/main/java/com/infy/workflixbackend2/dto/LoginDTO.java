@@ -1,14 +1,8 @@
 package com.infy.workflixbackend2.dto;
 
 
-
-import com.infy.workflixbackend2.entity.Profile;
-
-import javax.validation.Valid;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
 import java.util.List;
-import java.util.Set;
+
 
 public class LoginDTO {
     private String loginId;

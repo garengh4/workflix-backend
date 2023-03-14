@@ -1,6 +1,5 @@
 package com.infy.workflixbackend2.dto;
 
-import javax.validation.constraints.NotNull;
 
 public class ProfileDTO {
     private Integer profileId;
