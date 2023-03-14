@@ -3,9 +3,10 @@ package com.infy.workflixbackend2.service;
 import com.infy.workflixbackend2.dto.ProfileDTO;
 import com.infy.workflixbackend2.entity.Profile;
 import com.infy.workflixbackend2.exception.WorkflixException;
+import org.springframework.stereotype.Component;
 
 import java.util.Set;
-
+@Component
 public interface ProfileService {
     public String createProfile(ProfileDTO profileDTO) throws WorkflixException;
     public String deletingProfile(String userProfileId) throws WorkflixException;
