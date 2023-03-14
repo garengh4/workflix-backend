@@ -1,5 +1,5 @@
-create schema if not exists workflix_db;
-use workflix_db;
+create schema if not exists workflix;
+use workflix;
 
 CREATE TABLE login(
 	login_id VARCHAR(50) PRIMARY KEY,
@@ -15,6 +15,6 @@ CREATE TABLE profile(
 INSERT INTO login (login_id, password) VALUES ('doe@example.com', 'Doe@123');
 INSERT INTO login (login_id, password) VALUES ('smith@example.com', 'Smith@123');
 
-INSERT INTO profile (profile_id,login_id,first_name,last_name) VALUES ('one','doe@example.com','Jane','Doe');
-INSERT INTO profile (profile_id,login_id,first_name,last_name) VALUES ('two','smith@example.com','John','Smith');
-INSERT INTO profile (profile_id,login_id,first_name,last_name) VALUES ('three','doe@example.com','Cathy','Doe');
+INSERT INTO profile (profile_id,login_id,first_name,last_name) VALUES (1,'doe@example.com','Jane','Doe');
+INSERT INTO profile (profile_id,login_id,first_name,last_name) VALUES (2,'smith@example.com','John','Smith');
+INSERT INTO profile (profile_id,login_id,first_name,last_name) VALUES (3,'doe@example.com','Cathy','Doe');

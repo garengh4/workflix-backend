@@ -1,10 +1,7 @@
 package com.infy.workflixbackend2.entity;
 
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.List;
 
 @Entity
@@ -15,6 +12,10 @@ public class Login {
     private String loginId;
     @Column(name="password")
     private String password;
+
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "login_id")
+    private List<Profile> LoginProfiles;
 
     public String getLoginId() {
         return loginId;
@@ -32,4 +33,11 @@ public class Login {
         this.password = password;
     }
 
+    public List<Profile> getLoginProfiles() {
+        return LoginProfiles;
+    }
+
+    public void setLoginProfiles(List<Profile> loginProfiles) {
+        LoginProfiles = loginProfiles;
+    }
 }

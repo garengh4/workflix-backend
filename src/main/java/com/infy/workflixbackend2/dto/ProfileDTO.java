@@ -2,16 +2,16 @@ package com.infy.workflixbackend2.dto;
 
 
 public class ProfileDTO {
-    private Integer profileId;
+    private String profileId;
     private String firstName;
     private String lastName;
     private String loginId;
 
-    public Integer getProfileId() {
+    public String getProfileId() {
         return profileId;
     }
 
-    public void setProfileId(Integer profileId) {
+    public void setProfileId(String profileId) {
         this.profileId = profileId;
     }
 

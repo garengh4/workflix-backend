@@ -31,15 +31,6 @@ public class LoginServiceImpl implements LoginService {
         LoginDTO loginDTO = new LoginDTO();
         loginDTO.setLoginId(username);
         loginDTO.setPassword(password);
-//        List<ProfileDTO> profileDTOList = loginEntry.getLoginProfiles().stream().map(e -> {
-//            ProfileDTO profileDTO = new ProfileDTO();
-//            profileDTO.setProfileId(e.getProfileId());
-//            profileDTO.setLoginId(e.getLoginId()); //check
-//            profileDTO.setFirstName(e.getFirstName());
-//            profileDTO.setLastName(e.getLastName());
-//            return profileDTO;
-//        }).collect(Collectors.toList());
-//        loginDTO.setLoginProfilesDTO(profileDTOList);
 
         return loginDTO;
     }

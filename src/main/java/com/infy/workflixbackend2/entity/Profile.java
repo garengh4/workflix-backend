@@ -7,10 +7,8 @@ import javax.persistence.*;
 @Table(name = "profile")
 public class Profile {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "profile_id")
-    private Integer profileId;
-
+    private String profileId;
     @Column(name="first_name")
     private String firstName;
     @Column(name="last_name")
@@ -18,11 +16,11 @@ public class Profile {
     @Column(name="login_id")
     private String loginId;
 
-    public Integer getProfileId() {
+    public String getProfileId() {
         return profileId;
     }
 
-    public void setProfileId(Integer profileId) {
+    public void setProfileId(String profileId) {
         this.profileId = profileId;
     }
 

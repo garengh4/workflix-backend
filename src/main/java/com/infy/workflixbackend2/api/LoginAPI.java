@@ -13,6 +13,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
+import javax.validation.constraints.Pattern;
 import java.util.List;
 
 @CrossOrigin
@@ -50,4 +51,5 @@ public class LoginAPI {
         registeredWithLoginID = environment.getProperty("LoginAPI.USER_REGISTRATION_SUCCESS") + registeredWithLoginID;
         return new ResponseEntity<>(registeredWithLoginID,HttpStatus.OK);
     }
+
 }
