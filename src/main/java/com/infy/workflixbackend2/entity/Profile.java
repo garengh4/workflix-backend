@@ -1,5 +1,6 @@
 package com.infy.workflixbackend2.entity;
 
+
 import javax.persistence.*;
 
 @Entity
