@@ -28,10 +28,8 @@ public class FileServiceImpl implements FileService {
     public String uploadFile(MultipartFile file, String categoryName, String descriptions, String profileId) throws WorkflixException {
 
             String originalFileName = file.getOriginalFilename();
-            Path path = new File(originalFileName).toPath();
             FileDTO fileDTO;
             try {
-               // String contentType = Files.probeContentType(path);
                 fileDTO= dataBucketUtil.uploadFile(file, originalFileName);
             } catch (Exception e) {
                 throw new FileWriteException("Error occurred while uploading");
@@ -50,7 +48,7 @@ public class FileServiceImpl implements FileService {
     public FileDTO getFileByFileId(long fileId) throws WorkflixException {
         Optional<InputFile> optionalFiles = Optional.of(fileRepository.findByFileId(fileId));
         InputFile file = optionalFiles.orElseThrow(() -> new WorkflixException("FileService.FILE_NOT_FOUND"));
-        FileDTO fileDTO=FileService.fileDTOFrom(file);
+        FileDTO fileDTO=fileDTOFrom(file);
         return fileDTO;
     }
 
@@ -58,7 +56,7 @@ public class FileServiceImpl implements FileService {
     public FileDTO getFileByFileName(String fileName) throws WorkflixException {
         Optional<InputFile> optionalFiles = Optional.of(fileRepository.findByFileName(fileName));
         InputFile file = optionalFiles.orElseThrow(() -> new WorkflixException("FileService.FILE_NOT_FOUND"));
-        FileDTO fileDTO=FileService.fileDTOFrom(file);
+        FileDTO fileDTO=fileDTOFrom(file);
         return fileDTO;
     }
 
@@ -78,7 +76,7 @@ public class FileServiceImpl implements FileService {
 
         Set<FileDTO> fileDTO = fileList
                 .stream()
-                .map((file) -> FileService.fileDTOFrom(file))
+                .map((file) -> fileDTOFrom(file))
                 .collect(Collectors.toSet());
         return fileDTO;
     }
@@ -90,7 +88,7 @@ public class FileServiceImpl implements FileService {
 
         Set<FileDTO> fileDTO = fileList
                 .stream()
-                .map((file) -> FileService.fileDTOFrom(file))
+                .map((file) -> fileDTOFrom(file))
                 .collect(Collectors.toSet());
         return fileDTO;
     }
@@ -103,4 +101,14 @@ public class FileServiceImpl implements FileService {
         String msg=dataBucketUtil.deleteFile(fileName);
         return fileName+msg;
     }
+    public FileDTO fileDTOFrom(InputFile file) {
+        FileDTO fileDTO = new FileDTO(file.getFileName(), file.getFileUrl());
+
+        fileDTO.setFileId(file.getFileId());
+        fileDTO.setCategoryName(file.getCategoryName());
+        fileDTO.setUserProfileId(file.getUserProfileId());
+        fileDTO.setDescriptions(file.getDescriptions());
+        return fileDTO;
+    }
+
 }

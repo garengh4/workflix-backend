@@ -7,7 +7,6 @@ import javax.persistence.*;
 @Entity
 @Table(name = "files")
 public class InputFile {
-
         @Id
         @GeneratedValue(strategy = GenerationType.IDENTITY)
         private long fileId;
@@ -16,7 +15,6 @@ public class InputFile {
         private String descriptions;
         private String categoryName;
         private String fileUrl;
-
         public long getFileId() {
             return fileId;
         }

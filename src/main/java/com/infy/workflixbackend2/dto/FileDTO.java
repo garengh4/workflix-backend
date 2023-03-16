@@ -11,7 +11,6 @@ public class FileDTO {
     @NotNull(message = "{file.category.name.absent")
     private String categoryName;
     private String fileUrl;
-
     public FileDTO(String fileName, String fileUrl) {
         this.fileName = fileName;
         this.fileUrl = fileUrl;

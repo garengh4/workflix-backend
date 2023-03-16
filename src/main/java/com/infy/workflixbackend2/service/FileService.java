@@ -15,15 +15,6 @@ public interface FileService {
     public Set<FileDTO> getFilesByUserProfileId (String userProfileId) throws WorkflixException;
     public Set<FileDTO> getFilesByCategoryName (String categoryName) throws WorkflixException;
     public String deleteFile (String fileName) throws WorkflixException;
-    static FileDTO fileDTOFrom(InputFile file) {
-        FileDTO fileDTO = new FileDTO(file.getFileName(), file.getFileUrl());
-
-        fileDTO.setFileId(file.getFileId());
-        fileDTO.setCategoryName(file.getCategoryName());
-        fileDTO.setUserProfileId(file.getUserProfileId());
-        fileDTO.setDescriptions(file.getDescriptions());
-        return fileDTO;
-    }
-
+    public FileDTO fileDTOFrom(InputFile file) ;
 
 }

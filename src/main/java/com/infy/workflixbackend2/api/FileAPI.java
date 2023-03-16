@@ -66,4 +66,4 @@ public class FileAPI {
         String msg = fileService.deleteFile(fileName);
         return new ResponseEntity<>(msg, HttpStatus.OK);
     }
-    }
+}

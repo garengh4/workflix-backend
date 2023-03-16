@@ -3,7 +3,6 @@ package com.infy.workflixbackend2.exception;
 public class ApiException {
     private String errorMessage;
     private Integer statusCode;
-
     public Integer getStatusCode() {
         return statusCode;
     }
