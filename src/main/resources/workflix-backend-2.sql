@@ -15,8 +15,8 @@ CREATE TABLE profile(
 CREATE TABLE files(
 	file_id BIGINT AUTO_INCREMENT PRIMARY KEY,
 	file_name VARCHAR(50) NOT NULL,
-    user_profile_id VARCHAR(50),
-	FOREIGN KEY (user_profile_id) REFERENCES profile(profile_id),
+    profile_id VARCHAR(50),
+	FOREIGN KEY (profile_id) REFERENCES profile(profile_id),
 	category_name VARCHAR(50),
 	descriptions VARCHAR(100),
 	file_url VARCHAR(255));
