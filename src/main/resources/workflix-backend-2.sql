@@ -1,5 +1,5 @@
-create schema if not exists Workflix;
-use Workflix;
+create schema if not exists workflix;
+use workflix;
 
 CREATE TABLE login(
 	login_id VARCHAR(50) PRIMARY KEY,
