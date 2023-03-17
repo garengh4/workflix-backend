@@ -12,6 +12,7 @@ CREATE TABLE profile(
     first_name VARCHAR(50) NOT NULL,
     last_name VARCHAR(50) NOT NULL);
 
+
 CREATE TABLE files(
 	file_id BIGINT AUTO_INCREMENT PRIMARY KEY,
 	file_name VARCHAR(50) NOT NULL,
@@ -20,6 +21,7 @@ CREATE TABLE files(
 	category_name VARCHAR(50),
 	descriptions VARCHAR(100),
 	file_url VARCHAR(255));
+
 
 INSERT INTO login (login_id, password) VALUES ('doe@example.com', 'Doe@123');
 INSERT INTO login (login_id, password) VALUES ('smith@example.com', 'Smith@123');
