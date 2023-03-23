@@ -11,7 +11,8 @@ public class InputFile {
         @GeneratedValue(strategy = GenerationType.IDENTITY)
         private long fileId;
         private String fileName;
-        private String userProfileId;
+
+        private String profileId;
         private String descriptions;
         private String categoryName;
         private String fileUrl;
@@ -27,11 +28,11 @@ public class InputFile {
         public void setFileName(String fileName) {
             this.fileName = fileName;
         }
-        public String getUserProfileId() {
-            return userProfileId;
+        public String getProfileId() {
+            return profileId;
         }
-        public void setUserProfileId(String userProfileId) {
-            this.userProfileId = userProfileId;
+        public void setProfileId(String profileId) {
+            this.profileId = profileId;
         }
         public String getDescriptions() {
             return descriptions;

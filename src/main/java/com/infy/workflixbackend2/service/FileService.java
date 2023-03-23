@@ -12,7 +12,7 @@ public interface FileService {
     public FileDTO getFileByFileId(long fileId) throws WorkflixException;
     public FileDTO getFileByFileName (String fileName) throws WorkflixException;
     public String updateFileName (String oldFileName, String newFileName) throws WorkflixException;
-    public Set<FileDTO> getFilesByUserProfileId (String userProfileId) throws WorkflixException;
+    public Set<FileDTO> getFilesByProfileId (String profileId) throws WorkflixException;
     public Set<FileDTO> getFilesByCategoryName (String categoryName) throws WorkflixException;
     public String deleteFile (String fileName) throws WorkflixException;
     public FileDTO fileDTOFrom(InputFile file) ;

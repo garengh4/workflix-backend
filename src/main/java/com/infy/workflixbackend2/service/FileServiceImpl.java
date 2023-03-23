@@ -28,6 +28,10 @@ public class FileServiceImpl implements FileService {
     public String uploadFile(MultipartFile file, String categoryName, String descriptions, String profileId) throws WorkflixException {
 
             String originalFileName = file.getOriginalFilename();
+           Optional<InputFile> optionalFiles= Optional.ofNullable(fileRepository.findByFileName(originalFileName));
+           if(!optionalFiles.isEmpty()){
+               throw new WorkflixException("FileService.FILE_NAME_ALREADY_IN_USE");
+            }
             FileDTO fileDTO;
             try {
                 fileDTO= dataBucketUtil.uploadFile(file, originalFileName);
@@ -39,7 +43,7 @@ public class FileServiceImpl implements FileService {
         inputFile.setFileUrl(fileDTO.getFileUrl());
         inputFile.setCategoryName(categoryName);
         inputFile.setDescriptions(descriptions);
-        inputFile.setUserProfileId(profileId);
+        inputFile.setProfileId(profileId);
         fileRepository.save(inputFile);
         return fileDTO.getFileUrl();
     }
@@ -70,8 +74,8 @@ public class FileServiceImpl implements FileService {
         return newFileName+" updated!";
     }
     @Override
-    public Set<FileDTO> getFilesByUserProfileId(String userProfileId) throws WorkflixException {
-        Optional<Set<InputFile>> optionalFiles = Optional.of(fileRepository.findByUserProfileId(userProfileId));
+    public Set<FileDTO> getFilesByProfileId(String profileId) throws WorkflixException {
+        Optional<Set<InputFile>> optionalFiles = Optional.of(fileRepository.findByProfileId(profileId));
         Set<InputFile> fileList = optionalFiles.orElseThrow(() -> new WorkflixException("FileService.FILE_NOT_FOUND"));
 
         Set<FileDTO> fileDTO = fileList
@@ -106,7 +110,7 @@ public class FileServiceImpl implements FileService {
 
         fileDTO.setFileId(file.getFileId());
         fileDTO.setCategoryName(file.getCategoryName());
-        fileDTO.setUserProfileId(file.getUserProfileId());
+        fileDTO.setProfileId(file.getProfileId());
         fileDTO.setDescriptions(file.getDescriptions());
         return fileDTO;
     }

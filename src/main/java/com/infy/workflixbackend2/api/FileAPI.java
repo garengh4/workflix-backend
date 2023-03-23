@@ -52,8 +52,8 @@ public class FileAPI {
     }
 
     @GetMapping(value = "files/userProfile/{userProfileId}/")
-    public ResponseEntity<Set<FileDTO>> getFilesByUserProfileId (@PathVariable String userProfileId) throws WorkflixException {
-        return new ResponseEntity<>(fileService.getFilesByUserProfileId(userProfileId), HttpStatus.OK);
+    public ResponseEntity<Set<FileDTO>> getFilesByProfileId (@PathVariable String ProfileId) throws WorkflixException {
+        return new ResponseEntity<>(fileService.getFilesByProfileId(ProfileId), HttpStatus.OK);
     }
 
     @GetMapping(value = "files/categoryName/{categoryName}/")
