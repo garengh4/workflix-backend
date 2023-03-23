@@ -6,7 +6,7 @@ public class FileDTO {
     @NotNull(message = "{file.name.absent}")
     private String fileName;
     @NotNull(message = "{file.owner.absent}")
-    private String userProfileId;
+    private String profileId;
     private String descriptions;
     @NotNull(message = "{file.category.name.absent")
     private String categoryName;
@@ -33,12 +33,12 @@ public class FileDTO {
         this.fileName = fileName;
     }
 
-    public String getUserProfileId() {
-        return userProfileId;
+    public String getProfileId() {
+        return profileId;
     }
 
-    public void setUserProfileId(String userProfileId) {
-        this.userProfileId = userProfileId;
+    public void setProfileId(String profileId) {
+        this.profileId = profileId;
     }
 
     public String getDescriptions() {
