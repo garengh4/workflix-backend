@@ -45,6 +45,7 @@ public class LoginAPI {
 
     @PostMapping(value = "/register")
     public ResponseEntity<LoginDTO> registerLogin(@Valid @RequestBody LoginDTO loginDTO) throws WorkflixException{
+
         logger.info("USER TRYING TO REGISTER. USER LOGIN ID: " + loginDTO.getLoginId());
         loginService.registerNewLogin(loginDTO);
         return new ResponseEntity<>(loginDTO,HttpStatus.OK);
