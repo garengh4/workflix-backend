@@ -44,12 +44,10 @@ public class LoginAPI {
     }
 
     @PostMapping(value = "/register")
-    public ResponseEntity<String> registerLogin(@Valid @RequestBody LoginDTO loginDTO) throws WorkflixException{
-
+    public ResponseEntity<LoginDTO> registerLogin(@Valid @RequestBody LoginDTO loginDTO) throws WorkflixException{
         logger.info("USER TRYING TO REGISTER. USER LOGIN ID: " + loginDTO.getLoginId());
-        String registeredWithLoginID = loginService.registerNewLogin(loginDTO);
-        registeredWithLoginID = environment.getProperty("LoginAPI.USER_REGISTRATION_SUCCESS") + registeredWithLoginID;
-        return new ResponseEntity<>(registeredWithLoginID,HttpStatus.OK);
+        loginService.registerNewLogin(loginDTO);
+        return new ResponseEntity<>(loginDTO,HttpStatus.OK);
     }
 
 }

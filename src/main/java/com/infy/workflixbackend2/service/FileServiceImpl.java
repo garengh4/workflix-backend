@@ -68,6 +68,10 @@ public class FileServiceImpl implements FileService {
     public String updateFileName(String oldFileName, String newFileName) throws WorkflixException{
         Optional<InputFile> optionalFiles = Optional.of(fileRepository.findByFileName(oldFileName));
         InputFile file = optionalFiles.orElseThrow(() -> new WorkflixException("FileService.FILE_NOT_FOUND"));
+        Optional<InputFile> optionalNewFiles= Optional.ofNullable(fileRepository.findByFileName(newFileName));
+        if(!optionalNewFiles.isEmpty()){
+            throw new WorkflixException("FileService.FILE_NAME_ALREADY_IN_USE");
+        }
         file.setFileName(newFileName);
         String newUrl = dataBucketUtil.updateFile(oldFileName,newFileName);
         file.setFileUrl(newUrl);
