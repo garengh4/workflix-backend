@@ -31,6 +31,7 @@ public class ProfileAPI {
     @PostMapping(value = "/create")
     public ResponseEntity<String> createProfile(@RequestBody ProfileDTO profileDTO) throws WorkflixException {
         return new ResponseEntity<>(profileService.createProfile(profileDTO), HttpStatus.OK);
+
     }
     @GetMapping(value = "/profiles/{loginId}")
     public ResponseEntity<List<ProfileDTO>> getProfiles(@PathVariable("loginId") String loginId) throws WorkflixException{

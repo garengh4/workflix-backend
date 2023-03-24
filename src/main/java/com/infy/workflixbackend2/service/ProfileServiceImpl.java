@@ -52,7 +52,7 @@ public class ProfileServiceImpl implements ProfileService{
     @Override
     public List<ProfileDTO> getProfiles(String loginId) throws WorkflixException {
         Login login = loginRepository.findById(loginId).orElseThrow(
-                () -> new WorkflixException("EmailService.PROFILE_NOT_FOUND")
+                () -> new WorkflixException("LoginService.USER_NOT_FOUND")
         );
 
         List<ProfileDTO> profileDTOs = login.getLoginProfiles().stream().map(e -> {
