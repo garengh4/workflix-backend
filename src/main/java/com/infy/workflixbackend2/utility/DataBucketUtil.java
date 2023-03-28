@@ -13,11 +13,15 @@ import java.io.FileOutputStream;
 public class DataBucketUtil {
     @Autowired
     private Storage storage;
+
+    private String bucketName= "workflix-bucket-42";
     public FileDTO uploadFile(MultipartFile multipartFile, String fileName) {
+
+
 
         try {
             byte[] fileData = FileUtils.readFileToByteArray(convertFile(multipartFile));
-            BlobId blobId=BlobId.of("gcp-demo-2023",fileName);
+            BlobId blobId=BlobId.of(bucketName,fileName);
             BlobInfo blobInfo=BlobInfo.newBuilder(blobId).build();
             Blob blob=storage.create(blobInfo, fileData);
             if(blob != null){
@@ -45,14 +49,14 @@ public class DataBucketUtil {
     }
 
     public String updateFile(String oldFileName, String newFileName){
-        BlobId source=BlobId.of("gcp-demo-2023",oldFileName);
-        BlobId target=BlobId.of("gcp-demo-2023",newFileName);
+        BlobId source=BlobId.of(bucketName,oldFileName);
+        BlobId target=BlobId.of(bucketName,newFileName);
         Storage.BlobTargetOption precondition;
-        if(storage.get("gcp-demo-2023", newFileName)==null){
+        if(storage.get(bucketName, newFileName)==null){
             precondition=Storage.BlobTargetOption.doesNotExist();
         }else {
             precondition = Storage.BlobTargetOption.generationMatch(
-                    storage.get("gcp-demo-2023", newFileName).getGeneration());
+                    storage.get(bucketName, newFileName).getGeneration());
         }
         storage.copy(
                 Storage.CopyRequest.newBuilder().setSource(source).setTarget(target, precondition).build());
@@ -61,7 +65,7 @@ public class DataBucketUtil {
         return copiedObject.getMediaLink();
     }
     public String deleteFile(String fileName){
-        BlobId blob=BlobId.of("gcp-demo-2023",fileName);
+        BlobId blob=BlobId.of(bucketName,fileName);
         boolean deleted=storage.delete(blob);
         if(!deleted){
             throw new FileWriteException("An error has occurred while deleting the file");
