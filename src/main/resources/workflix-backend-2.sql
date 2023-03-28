@@ -5,6 +5,7 @@ CREATE TABLE login(
 	login_id VARCHAR(50) PRIMARY KEY,
     password VARCHAR(20) NOT NULL);
 
+
 CREATE TABLE profile(
 	profile_id VARCHAR(50) PRIMARY KEY,
     login_id VARCHAR(50),
