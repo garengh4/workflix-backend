@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 @Component
 public interface LoginService {
-    public LoginDTO authenticateLogin(String username, String password) throws WorkflixException;
+//    public LoginDTO authenticateLogin(String username, String password) throws WorkflixException;
 
     public List<Login> getAllLogins();
 
