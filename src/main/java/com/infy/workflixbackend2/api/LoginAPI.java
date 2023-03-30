@@ -30,14 +30,6 @@ public class LoginAPI {
 
     static Log logger = LogFactory.getLog(LoginAPI.class);
 
-    @PostMapping(value = "/login")
-    public ResponseEntity<LoginDTO> authenticateLogin(@Valid @RequestBody LoginDTO loginDTO) throws WorkflixException {
-
-        logger.info("USER TRYING TO LOGIN, VALIDATING CREDENTIALS. USER LOGIN ID: " + loginDTO.getLoginId());
-        LoginDTO loginDTOFromDB = loginService.authenticateLogin(loginDTO.getLoginId(), loginDTO.getPassword());
-        return new ResponseEntity<>(loginDTOFromDB, HttpStatus.OK);
-    }
-
     @GetMapping
     public List<Login> allLogins(){
         return loginService.getAllLogins();
