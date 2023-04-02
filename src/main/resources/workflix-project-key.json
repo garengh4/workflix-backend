@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "workflix-project-54",
+  "private_key_id": "df9047c550d931d7163df2b1de376c69d0a99c78",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvwIBADANBgkqhkiG9w0BAQEFAASCBKkwggSlAgEAAoIBAQDUJULytJ7/DiPV\n6s0tIuKaMeSc/VpkL5cS5FXkndv9rHdX7WHXEKSV5LnZEnvPGGPtK4dA+nF6YpUs\nr0Vk09IgO60FWvHgP4b86kJIvj4lo3STGNOPWkVClt8v1AfS4sA+bAD3YpUdKEK2\nmiSBLBxPecJmqaMrUH+pKroUXkQBVdjS6m/FnNxVGS62xE4fOAyxtZHjbhEriG7T\nvW5LwqWp9cqbSCR36IKbfWIKnoAQKCW5gQZqKqQCsZzc+o7Kd0W0ODuGiPDec283\nWwzZYm86iqeWPJIoxTkLo/TUu3dnIOOcL1VyD8SQPvC2EvrlkhGpAk5SvbjAZBMV\nxxb8xv7HAgMBAAECggEAEP1U8bv+Wb3Hp+uQd/Npw2CIhvwRP6HCDwzDRjZQNm4X\n9q43njIihDCXo6dDzA+PfSB1ygHkkaEQgk4dGBiQpO0yi5G/ei6MQHgAS/QUZQ5E\nmT0tQDdCAbW0dQ+desmXDMi4gRdfisC9KwOINeIS+FhvdapTO3ZMav9VfKkZ+CND\nAYKJHS3Amq00AMd6+ExCRmsYY8g7vhjYd9cQlkMQAdjd3ZhTszhrpn4pyM+iaBAM\nkDDsromX7+k00Y2BG2ixXSIJqx2siPVgzsnY1R+K+9lVzk4a4cX090r/u9jB6ey6\naEvLzB4i98bS59K0qdvExrz5fWyL5Vq6Ev+6/hT4CQKBgQD2obh1HhKU5WbKNMOR\nthG1GngUNlT+9A25u7C5zEd80qowrlp+aySQaZN7sCeNsqKqt7OoU+riCOBOPPmh\nR57I32XCAya1EIXVOt/5AjEWZKr9MhqwpnijkkYGkujHbv3CQlWFBVAsptpYN//X\nxz7dPdp0abfdyuyt/SeBEoSFvwKBgQDcNDFjRKdV7Rvi0FA0PUoEo4m8ptk/LANA\njzUYU4Cb+xQbvoh5IABo9+dmEvzTaE2TxgDuBrmTnTvrf/du3m6bOiilmV1r/QzB\nm8ZuJohh3T9nru830uJ8GTUBpy37qRbMVWC/ernVbBkU79bHGYYewwNbEtisW75L\nSGJrzmkY+QKBgQCsKS/N8XQfJBOgyzxJlsK9nQB9e3/RiSObp30x9XthktzippLc\n9IXNmSUujkTOEQikCyAKPKoVpwSNGNtYzdn1dpxd1j1K34HM2xBFjlYdv5/spvEi\nptJHvG/NXvfHX58b35o7BP52bPK16kFZqugjIG5CHRoQZPraaYEOBJMlmQKBgQCy\n2V1noAI9YwisLr+FvmXY4K7lX6rBiVDW5bmdGW0ywznw0s7rehd7KiZynGdmmaew\npzhoG2QsxZ8+RkBEdzrkrtcGsUrUg8IRmiEPpBJPUjDGWKoI8Cpt2tdXkV5isVJI\nAexDeT1oX5T7kVUjftKVN5UJKoR7cURcxtzRbOOlmQKBgQCOmjCf9ZPXQ+Ztsi8y\nzYqOkFm1Y4SUEbKA98vVOJ1DM9JIfkfMAvcgS9niyI99HF2LoOI8y8J2JoMiokxz\nXQLtif0cNHTPxDjHXxT4dVKBKfzwH/CKruloaQLDSdmNJt3I4FYsCd+TDQQ5SmPF\n7nJTD6lmOY2ec3PzZ5uinU0CBw==\n-----END PRIVATE KEY-----\n",
+  "client_email": "workflix54-service@workflix-project-54.iam.gserviceaccount.com",
+  "client_id": "114052750710471334128",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/workflix54-service%40workflix-project-54.iam.gserviceaccount.com"
+}
