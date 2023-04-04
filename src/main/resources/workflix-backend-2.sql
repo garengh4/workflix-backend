@@ -3,7 +3,7 @@ use workflix;
 
 CREATE TABLE login(
 	login_id VARCHAR(50) PRIMARY KEY,
-    password VARCHAR(20) NOT NULL);
+    password NVARCHAR(514) NOT NULL);
 
 CREATE TABLE profile(
 	profile_id VARCHAR(50) PRIMARY KEY,

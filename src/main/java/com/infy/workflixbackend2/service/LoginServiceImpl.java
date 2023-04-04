@@ -6,6 +6,7 @@ import com.infy.workflixbackend2.exception.WorkflixException;
 import com.infy.workflixbackend2.repository.LoginRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 
@@ -20,20 +21,7 @@ public class LoginServiceImpl implements LoginService {
     @Autowired
     private LoginRepository loginRepository;
 
-    @Override
-    public LoginDTO authenticateLogin (String username, String password) throws WorkflixException {
-        Login loginEntry = loginRepository.findById(username).orElseThrow(
-                () -> new WorkflixException("LoginService.USER_NOT_FOUND")
-        );
-        if (!password.equals(loginEntry.getPassword())) {
-            throw new WorkflixException("LoginService.INVALID_CREDENTIALS");        }
-
-        LoginDTO loginDTO = new LoginDTO();
-        loginDTO.setLoginId(username);
-        loginDTO.setPassword(password);
-
-        return loginDTO;
-    }
+    private BCryptPasswordEncoder bcryptEncoder =  new BCryptPasswordEncoder();
 
     @Override
     public List<Login> getAllLogins() {
@@ -50,7 +38,7 @@ public class LoginServiceImpl implements LoginService {
         } else {
             Login newlogin = new Login();
             newlogin.setLoginId(loginDTO.getLoginId());
-            newlogin.setPassword(loginDTO.getPassword());
+            newlogin.setPassword(bcryptEncoder.encode(loginDTO.getPassword()));
             loginRepository.save(newlogin);
         }
         return loginDTO.getLoginId();
