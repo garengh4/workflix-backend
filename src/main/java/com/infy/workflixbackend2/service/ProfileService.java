@@ -1,6 +1,8 @@
 package com.infy.workflixbackend2.service;
 
+import com.infy.workflixbackend2.dto.CategoryDTO;
 import com.infy.workflixbackend2.dto.ProfileDTO;
+import com.infy.workflixbackend2.entity.Category;
 import com.infy.workflixbackend2.exception.WorkflixException;
 import org.springframework.stereotype.Component;
 

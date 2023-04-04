@@ -2,6 +2,7 @@ package com.infy.workflixbackend2.entity;
 
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "profile")
@@ -15,6 +16,7 @@ public class Profile {
     private String lastName;
     @Column(name="login_id")
     private String loginId;
+
 
     public String getProfileId() {
         return profileId;
@@ -47,5 +49,7 @@ public class Profile {
     public void setLoginId(String loginId) {
         this.loginId = loginId;
     }
+
+
 }
 

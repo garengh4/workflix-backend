@@ -1,6 +1,8 @@
 package com.infy.workflixbackend2.service;
 
+import com.infy.workflixbackend2.dto.CategoryDTO;
 import com.infy.workflixbackend2.dto.ProfileDTO;
+import com.infy.workflixbackend2.entity.Category;
 import com.infy.workflixbackend2.entity.Login;
 import com.infy.workflixbackend2.entity.Profile;
 import com.infy.workflixbackend2.exception.WorkflixException;
@@ -23,6 +25,9 @@ public class ProfileServiceImpl implements ProfileService{
     private ProfileRepository profileRepository;
     @Autowired
     private LoginRepository loginRepository;
+    @Autowired
+    private CategoryService categoryService;
+
 
     @Override
     public String createProfile(ProfileDTO profileDTO) throws WorkflixException {
@@ -45,6 +50,7 @@ public class ProfileServiceImpl implements ProfileService{
         Profile profile = profileRepository.findById(profileId).orElseThrow(
                 () -> new WorkflixException("ProfileService.PROFILE_NOT_FOUND")
         );
+
         profileRepository.delete(profile);
         return profileId;
     }
@@ -65,4 +71,7 @@ public class ProfileServiceImpl implements ProfileService{
         }).collect(Collectors.toList());
         return profileDTOs;
     }
+
+
+
 }
