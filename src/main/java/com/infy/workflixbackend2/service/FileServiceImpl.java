@@ -29,7 +29,7 @@ public class FileServiceImpl implements FileService {
 
             String originalFileName = file.getOriginalFilename();
            Optional<InputFile> optionalFiles= Optional.ofNullable(fileRepository.findByFileName(originalFileName));
-           if(!optionalFiles.isEmpty()){
+           if(optionalFiles.isPresent()){
                throw new WorkflixException("FileService.FILE_NAME_ALREADY_IN_USE");
             }
             FileDTO fileDTO;
@@ -69,7 +69,7 @@ public class FileServiceImpl implements FileService {
         Optional<InputFile> optionalFiles = Optional.of(fileRepository.findByFileName(oldFileName));
         InputFile file = optionalFiles.orElseThrow(() -> new WorkflixException("FileService.FILE_NOT_FOUND"));
         Optional<InputFile> optionalNewFiles= Optional.ofNullable(fileRepository.findByFileName(newFileName));
-        if(!optionalNewFiles.isEmpty()){
+        if(optionalNewFiles.isPresent()){
             throw new WorkflixException("FileService.FILE_NAME_ALREADY_IN_USE");
         }
         file.setFileName(newFileName);
