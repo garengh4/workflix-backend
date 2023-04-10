@@ -21,17 +21,17 @@ public class CategoryAPI {
     private CategoryService categoryService;
 
     @PostMapping(value= "/create")
-    public ResponseEntity<CategoryDTO> createCategory(@RequestParam String categoryName,@RequestParam String profileId) throws WorkflixException {
-        categoryService.createCategory(categoryName,profileId);
+    public ResponseEntity<CategoryDTO> createCategory(@RequestBody CategoryDTO categoryDTO) throws WorkflixException {
+        categoryService.createCategory(categoryDTO);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @GetMapping(value="/category")
-    public ResponseEntity<List<CategoryDTO>> getAllCategories() throws WorkflixException {
-        List<CategoryDTO> categoryDTOList = categoryService.getAll();
+
+    @GetMapping(value="/category/{profileId}")
+    public ResponseEntity<List<CategoryDTO>> getCategoryByProfileId(@PathVariable String profileId) throws WorkflixException {
+        List<CategoryDTO> categoryDTOList = categoryService.getCategoryByProfileId(profileId);
         return new ResponseEntity<>(categoryDTOList,HttpStatus.OK);
     }
-
 
 
 }

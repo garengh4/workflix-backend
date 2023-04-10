@@ -10,7 +10,8 @@ public class Category {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long category_id;
+    @Column(name = "category_id")
+    private Long categoryId;
     @Column(name = "category_name")
     private String categoryName;
 
@@ -20,9 +21,9 @@ public class Category {
     @JoinColumn(name = "post_id")
     private List<Post> posts;
 
-    public Long getCategory_id() {return category_id;}
+    public Long getCategoryId() {return categoryId;}
 
-    public void setCategory_id(Long category_id) {this.category_id = category_id;}
+    public void setCategoryId(Long categoryId) {this.categoryId = categoryId;}
     public String getCategoryName() {
         return categoryName;
     }

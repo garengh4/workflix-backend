@@ -9,6 +9,7 @@ public class CategoryDTO {
     private String categoryName;
     private List<PostDTO> posts;
     private String profileId;
+    public Long getCategoryId(){return categoryId;}
 
     public void setCategoryId(Long categoryId) { this.categoryId=categoryId;}
 
@@ -17,4 +18,8 @@ public class CategoryDTO {
     public void setProfileId(String profileId) {this.profileId=profileId;}
 
     public void setCategoryName(String categoryName) {this.categoryName=categoryName;}
+
+    public String getCategoryName() {return categoryName;}
+
+    public String getProfileId() {return profileId;}
 }

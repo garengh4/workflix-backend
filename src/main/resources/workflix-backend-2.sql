@@ -28,11 +28,9 @@ CREATE TABLE category (
 CREATE TABLE post (
     post_id BIGINT AUTO_INCREMENT PRIMARY KEY,
     content longtext,
-    created_on datetime,
     category_id BIGINT,
     FOREIGN KEY (category_id) REFERENCES category(category_id),
-    title varchar(255),
-    updated_on datetime);
+    title varchar(255));
 
 
 

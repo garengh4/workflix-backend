@@ -1,15 +1,19 @@
 package com.infy.workflixbackend2.service;
 
+import com.infy.workflixbackend2.dto.CategoryDTO;
 import com.infy.workflixbackend2.dto.PostDTO;
+import com.infy.workflixbackend2.entity.Category;
 import com.infy.workflixbackend2.entity.Post;
 import com.infy.workflixbackend2.entity.Profile;
 import com.infy.workflixbackend2.exception.WorkflixException;
+import com.infy.workflixbackend2.repository.CategoryRepository;
 import com.infy.workflixbackend2.repository.PostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.time.Instant;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -21,12 +25,9 @@ public class PostServiceImpl implements PostService {
 
     @Autowired
     private PostRepository postRepository;
+    @Autowired
+    private CategoryRepository categoryRepository;
 
-
-    public List<PostDTO> showAllPosts() throws WorkflixException {
-        List<Post> posts = postRepository.findAll();
-        return posts.stream().map(this::mapFromPostToDTO).collect(toList());
-    }
 
     public void createPost(PostDTO postDTO) throws WorkflixException {
         Post post = mapFromDTOToPost(postDTO);
@@ -35,15 +36,26 @@ public class PostServiceImpl implements PostService {
 
 
     public PostDTO readSinglePost(Long postId) throws WorkflixException {
-        Post post = postRepository.findById(postId).orElseThrow(() -> new WorkflixException("PostService.POST_NOT_FOUND"));
+        Post post = postRepository.findById(postId).orElseThrow(
+                () -> new WorkflixException("PostService.POST_NOT_FOUND"));
         return mapFromPostToDTO(post);
+    }
+    public List<PostDTO> getPostByCategoryId(Long categoryId) throws WorkflixException{
+       Category category=categoryRepository.findById(categoryId).orElseThrow(
+               ()->new WorkflixException("CategoryService.CATEGORY_NOT_FOUND")
+       );
+        List<Post> postList= postRepository.findByCategoryId(category);
+        List<PostDTO> postDTOList=new ArrayList<>();
+       for(Post post:postList){
+           postDTOList.add(mapFromPostToDTO(post));
+       }
+       return postDTOList;
     }
 
     public String updatePost(Long postId,String newTitle,String newContent)throws WorkflixException{
         Post post = postRepository.findById(postId).orElseThrow(() -> new WorkflixException("PostService.POST_NOT_FOUND"));
         post.setTitle(newTitle);
         post.setContent(newContent);
-        post.setUpdatedOn(Instant.now());
         return newTitle+" updated!";
     }
     public String deletePost(Long postId)throws WorkflixException{
@@ -52,24 +64,31 @@ public class PostServiceImpl implements PostService {
         return "delete successfully!";
     }
 
-    public PostDTO mapFromPostToDTO(Post post){
+    public PostDTO mapFromPostToDTO(Post post) throws WorkflixException{
         PostDTO postDTO = new PostDTO();
         postDTO.setPostId(post.getPostId());
-        postDTO.setCategoryId(post.getCategoryId());
+        CategoryDTO categoryDTO=new CategoryDTO();
+        Category category= categoryRepository.findById(post.getCategoryId().getCategoryId()).orElseThrow(
+                ()->new WorkflixException("CategoryService.CATEGORY_NOT_FOUND")
+        );
+        categoryDTO.setCategoryId(category.getCategoryId());
+        categoryDTO.setCategoryName(category.getCategoryName());
+        categoryDTO.setProfileId(category.getProfileId());
+        postDTO.setCategoryId(categoryDTO);
         postDTO.setTitle(post.getTitle());
         postDTO.setContent(post.getContent());
-        postDTO.setCreatedOn(post.getCreatedOn());
-        postDTO.setUpdatedOn(post.getUpdatedOn());
         return postDTO;
     }
 
-    public Post mapFromDTOToPost(PostDTO postDTO){
+    public Post mapFromDTOToPost(PostDTO postDTO) throws WorkflixException{
         Post post = new Post();
         post.setTitle(postDTO.getTitle());
         post.setContent(postDTO.getContent());
-        post.setCreatedOn(Instant.now());
-        post.setUpdatedOn(Instant.now());
-        post.setCategoryId(postDTO.getCategoryId());
+        CategoryDTO categoryDTO=postDTO.getCategoryDTO();
+        Category category= categoryRepository.findById(categoryDTO.getCategoryId()).orElseThrow(
+                ()->new WorkflixException("CategoryService.CATEGORY_NOT_FOUND")
+        );
+        post.setCategoryId(category);
         return post;
     }
 }

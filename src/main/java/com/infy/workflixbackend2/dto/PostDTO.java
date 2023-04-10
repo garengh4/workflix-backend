@@ -7,9 +7,7 @@ public class PostDTO {
     private Long postId;
     private String content;
     private String title;
-    private Instant createdOn;
-    private Instant updatedOn;
-    private Long categoryId;
+    private CategoryDTO categoryDTO;
 
     public Long getPostId() {
         return postId;
@@ -34,26 +32,9 @@ public class PostDTO {
     public void setTitle(String title) {
         this.title = title;
     }
-    public Instant getCreatedOn() {
-        return createdOn;
-    }
-    public void setCreatedOn(Instant createdOn) {
-        this.createdOn = createdOn;
-    }
+    public void setCategoryId(CategoryDTO categoryDTO) {this.categoryDTO=categoryDTO;}
 
-    public Instant getUpdatedOn() {
-        return updatedOn;
-    }
-
-    public void setUpdatedOn(Instant updatedOn) {
-        this.updatedOn = updatedOn;
-    }
-
-
-    public void setCategoryId(Long categoryId) {this.categoryId=categoryId;
-    }
-
-    public Long getCategoryId() {return categoryId;}
+    public CategoryDTO getCategoryDTO() {return categoryDTO;}
 
 
 }

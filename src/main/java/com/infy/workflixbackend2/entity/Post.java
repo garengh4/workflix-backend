@@ -19,12 +19,9 @@ public class Post {
     @Column(name = "content")
     @NotEmpty
     private String content;
-    @Column(name = "created_on")
-    private Instant createdOn;
-    @Column(name = "updated_on")
-    private Instant updatedOn;
-    @Column(name="category_id")
-    private Long categoryId;
+    @ManyToOne(cascade=CascadeType.ALL)
+    @JoinColumn(name = "category_id")
+    private Category categoryId;
 
     public Long getPostId() {
         return postId;
@@ -50,27 +47,11 @@ public class Post {
         this.content = content;
     }
 
-    public Instant getCreatedOn() {
-        return createdOn;
-    }
-
-    public void setCreatedOn(Instant createdOn) {
-        this.createdOn = createdOn;
-    }
-
-    public Instant getUpdatedOn() {
-        return updatedOn;
-    }
-
-    public void setUpdatedOn(Instant updatedOn) {
-        this.updatedOn = updatedOn;
-    }
-
-    public Long getCategoryId() {
+    public Category getCategoryId() {
         return categoryId;
     }
 
-    public void setCategoryId(Long categoryId) {
+    public void setCategoryId(Category categoryId) {
         this.categoryId = categoryId;
     }
 

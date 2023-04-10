@@ -7,7 +7,9 @@ import com.infy.workflixbackend2.exception.WorkflixException;
 import java.util.List;
 
 public interface CategoryService {
-    public void createCategory(String categoryName,String profileId) throws WorkflixException ;
-    public List<CategoryDTO> getAll() throws WorkflixException ;
+    public void createCategory(CategoryDTO categoryDTO) throws WorkflixException ;
+
+    public List<CategoryDTO> getCategoryByProfileId(String profileId) throws WorkflixException;
     public CategoryDTO mapFromCategoryToDTO(Category category);
+    public Category mapFromDTOToCategory(CategoryDTO categoryDTO);
 }

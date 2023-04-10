@@ -21,32 +21,39 @@ import static java.util.stream.Collectors.toList;
 public class CategoryServiceImpl implements CategoryService{
     @Autowired
     private CategoryRepository categoryRepository;
-    @Autowired
-    private PostService postService;
 
-    public void createCategory(String categoryName,String profileId)throws WorkflixException {
-        Category category=new Category();
-        category.setCategoryName(categoryName);
-        category.setProfileId(profileId);
+    public void createCategory(CategoryDTO categoryDTO)throws WorkflixException {
+       Optional<Category> categoryOptional= Optional.ofNullable(categoryRepository.
+               findByCategoryNameAndProfileId(categoryDTO.getCategoryName(),categoryDTO.getProfileId()));
+       if(categoryOptional.isPresent()){
+           throw new WorkflixException("CategoryService.CATEGORY_NAME_ALREADY_IN_USE");
+       }
+        Category category=this.mapFromDTOToCategory(categoryDTO);
         categoryRepository.save(category);
     }
 
-    public List<CategoryDTO> getAll() throws WorkflixException {
-        return categoryRepository.findAll()
-                .stream()
-                .map(this::mapFromCategoryToDTO)
-                .collect(toList());
+
+    public List<CategoryDTO> getCategoryByProfileId(String profileId) throws WorkflixException{
+       List<Category> categoryList= categoryRepository.findByProfileId(profileId);
+       if(categoryList.isEmpty()){
+           throw new WorkflixException("CategoryService.CATEGORY_NOT_FOUND");
+       }
+       return categoryList.stream().map(this::mapFromCategoryToDTO).collect(toList());
     }
 
 
     public CategoryDTO mapFromCategoryToDTO(Category category) {
         CategoryDTO categoryDTO = new CategoryDTO();
-        List<Post> postList=category.getPosts();
-        List<PostDTO> postDTOList=postList.stream().map(post->postService.mapFromPostToDTO(post)).collect(toList());
-        categoryDTO.setPosts(postDTOList);
         categoryDTO.setCategoryName(category.getCategoryName());
         categoryDTO.setProfileId(category.getProfileId());
+        categoryDTO.setCategoryId(category.getCategoryId());
         return categoryDTO;
+    }
+    public Category mapFromDTOToCategory(CategoryDTO categoryDTO){
+        Category category=new Category();
+        category.setCategoryName(categoryDTO.getCategoryName());
+        category.setProfileId(categoryDTO.getProfileId());
+        return category;
     }
 
 
