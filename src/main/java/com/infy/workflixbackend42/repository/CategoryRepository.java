@@ -1,6 +1,6 @@
-package com.infy.workflixbackend2.repository;
+package com.infy.workflixbackend42.repository;
 
-import com.infy.workflixbackend2.entity.Category;
+import com.infy.workflixbackend42.entity.Category;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;

@@ -1,4 +1,4 @@
-package com.infy.workflixbackend2.entity;
+package com.infy.workflixbackend42.entity;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;

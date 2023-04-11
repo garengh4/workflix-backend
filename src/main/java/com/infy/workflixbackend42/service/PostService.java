@@ -1,8 +1,8 @@
-package com.infy.workflixbackend2.service;
+package com.infy.workflixbackend42.service;
 
-import com.infy.workflixbackend2.dto.PostDTO;
-import com.infy.workflixbackend2.entity.Post;
-import com.infy.workflixbackend2.exception.WorkflixException;
+import com.infy.workflixbackend42.dto.PostDTO;
+import com.infy.workflixbackend42.entity.Post;
+import com.infy.workflixbackend42.exception.WorkflixException;
 import org.springframework.stereotype.Component;
 
 import java.util.List;

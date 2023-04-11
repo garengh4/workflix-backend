@@ -1,6 +1,6 @@
 package com.infy.workflixbackend42.dto;
 
-import com.infy.workflixbackend2.entity.Category;
+import com.infy.workflixbackend42.entity.Category;
 
 import java.util.List;
 

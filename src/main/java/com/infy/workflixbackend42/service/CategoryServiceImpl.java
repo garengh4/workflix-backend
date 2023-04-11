@@ -1,12 +1,12 @@
-package com.infy.workflixbackend2.service;
+package com.infy.workflixbackend42.service;
 
-import com.infy.workflixbackend2.dto.CategoryDTO;
-import com.infy.workflixbackend2.dto.PostDTO;
-import com.infy.workflixbackend2.entity.Category;
-import com.infy.workflixbackend2.entity.InputFile;
-import com.infy.workflixbackend2.entity.Post;
-import com.infy.workflixbackend2.exception.WorkflixException;
-import com.infy.workflixbackend2.repository.CategoryRepository;
+import com.infy.workflixbackend42.dto.CategoryDTO;
+import com.infy.workflixbackend42.dto.PostDTO;
+import com.infy.workflixbackend42.entity.Category;
+import com.infy.workflixbackend42.entity.InputFile;
+import com.infy.workflixbackend42.entity.Post;
+import com.infy.workflixbackend42.exception.WorkflixException;
+import com.infy.workflixbackend42.repository.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

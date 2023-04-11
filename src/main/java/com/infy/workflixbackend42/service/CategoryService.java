@@ -1,8 +1,8 @@
-package com.infy.workflixbackend2.service;
+package com.infy.workflixbackend42.service;
 
-import com.infy.workflixbackend2.dto.CategoryDTO;
-import com.infy.workflixbackend2.entity.Category;
-import com.infy.workflixbackend2.exception.WorkflixException;
+import com.infy.workflixbackend42.dto.CategoryDTO;
+import com.infy.workflixbackend42.entity.Category;
+import com.infy.workflixbackend42.exception.WorkflixException;
 
 import java.util.List;
 

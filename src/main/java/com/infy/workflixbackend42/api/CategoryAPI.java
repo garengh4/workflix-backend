@@ -1,9 +1,9 @@
-package com.infy.workflixbackend2.api;
+package com.infy.workflixbackend42.api;
 
-import com.infy.workflixbackend2.dto.CategoryDTO;
-import com.infy.workflixbackend2.dto.FileDTO;
-import com.infy.workflixbackend2.exception.WorkflixException;
-import com.infy.workflixbackend2.service.CategoryService;
+import com.infy.workflixbackend42.dto.CategoryDTO;
+import com.infy.workflixbackend42.dto.FileDTO;
+import com.infy.workflixbackend42.exception.WorkflixException;
+import com.infy.workflixbackend42.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

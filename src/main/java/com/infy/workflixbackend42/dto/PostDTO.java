@@ -1,4 +1,4 @@
-package com.infy.workflixbackend2.dto;
+package com.infy.workflixbackend42.dto;
 
 import javax.persistence.Column;
 import java.time.Instant;
