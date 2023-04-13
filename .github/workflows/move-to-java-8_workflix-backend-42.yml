@@ -6,7 +6,7 @@ name: Build and deploy JAR app to Azure Web App - workflix-backend-42
 on:
   push:
     branches:
-      - move-to-java-8
+      - azure-cloud-04132013
   workflow_dispatch:
 
 jobs:
