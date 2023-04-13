@@ -20,6 +20,19 @@ CREATE TABLE files(
 	category_name VARCHAR(50),
 	descriptions VARCHAR(100),
 	file_url VARCHAR(255));
+CREATE TABLE category (
+    category_id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    category_name VARCHAR(50),
+    profile_id VARCHAR(50),
+    FOREIGN KEY (profile_id) REFERENCES profile(profile_id));
+CREATE TABLE post (
+    post_id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    content longtext,
+    category_id BIGINT,
+    FOREIGN KEY (category_id) REFERENCES category(category_id),
+    title varchar(255));
+
+
 
 INSERT INTO login (login_id, password) VALUES ('doe@example.com', 'Doe@123');
 INSERT INTO login (login_id, password) VALUES ('smith@example.com', 'Smith@123');

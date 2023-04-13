@@ -1,10 +1,15 @@
 package com.infy.workflixbackend42.dto;
 
+import com.infy.workflixbackend42.entity.Category;
+
+import java.util.List;
+
 public class ProfileDTO {
     private String profileId;
     private String firstName;
     private String lastName;
     private String loginId;
+
 
     public String getProfileId() {
         return profileId;
@@ -37,4 +42,6 @@ public class ProfileDTO {
     public void setLoginId(String loginId) {
         this.loginId = loginId;
     }
+
+
 }
