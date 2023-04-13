@@ -1,0 +1,236 @@
+SSDLC NOTES
+
+	CIA Triad
+		Confidentiality, Integrity, Availability
+		(Disclosure, Alteration, Denial) is alternate way to refer to CIA
+
+	AAA
+		Authentication, Authorization, Accounting
+		(Who are you)   (What can you do)  (Auditing)
+
+	Asset (Data like CC numbers, passwords, etc. or other information useful to company)
+	Threat (Theft of data or other information useful to company)
+	Threat Agent (Attacker)
+	Control (Castle walls and guards)
+	Vulnerability (hole in wall)
+	Exploit (Attacker goes through hole in wall)
+	Risk (Probability and severity of damage)
+
+	Defense in Depth (layered security controls -> moat, high walls, guards, etc.)
+
+	Attack surface (All points where an intruder can intrude)
+
+	Attack vector (Methods used by attacker eg. attacking the guards)
+
+
+
+	LAYERS OF CYBER SECURITY
+
+		Human/people (Employee, Contractor, Customer, risk of social engineering and phishing, 
+			training used to guard this layer)
+		App software (Web and mobile applications, DB software etc.)
+		Hosts (Desktop/laptops/Devices, OS, VM, System software, risk of Malware(Virus, ramsonware etc)
+			Anti-malware installed + host-based firewall to guard this layer)
+		Network (Domain networks, Network devices, risk of intrusion, DOS, Firewalls and IDS/IPS
+			used to guard this layer)s
+		Info (Electronic info, info in physical form, data in transit, risk of leakage, tampering, deletion
+			Device encryption and communcation encryption SSL/TLS to guard this layer)
+
+
+	SOFTWARE DEVELOPMENT STRATEGIES
+		Waterfall Development (Requirements, Design, Implementaion, Verification, Maintenance)
+		Rapid Application Development (Requirements -> User design <-> Construction -> Cutover)
+		Agile Development (Plan -> Collaborate -> Deliver
+			backlog -> iteration + daily review  -> deliverables -> feedback to daily review)
+		DevOps (Code -> Build -> Test -> Release -> Deploy -> Operate -> Monitor -> plan -> Code)
+
+	MYTHS VS REALITY
+			Don't Have to worry about security, site too small
+
+			If we protect the network perimeter and sophisticated security controls once installed, 
+			will kep our application secure (Code and design flaws can create vulnerabilities,
+			Security controls must be configured, monitored, and reconfigured)
+
+			Security Group (SG) is responsible for security
+			(Every employee is responsible)
+
+
+	WHAT NEEDS TO CHANGE
+		Process shift
+			ShiftLeft approach
+		Mindset Change
+			NFR to FR from risk perspective
+		Cultural Change
+			Centralize to decentralize
+
+	
+	Secure SDLC
+
+		Initiaton -> Developement -> Implementation -> Operation -> Disposal
+
+		=> More secure software, Awareness of Security, Early detection of flaws, Cost Reduction, 
+			reduction of intrinsic business risk
+
+		Initiation (One-time)
+			- Security training
+			- User risk assessement
+			- Security and Privacy requirements
+			- Spec analysis
+		Development
+			- Security design requirements(One-time)
+			- Select security controls
+			- Design/modify security architecture (every bucket)
+			- Using components with known vulnerabilities
+			- Deprecate unsafe functions
+			- Attack surface analysis (every bucket)
+			- Threat modeling (every sprint)
+		Implementation
+			- Use approved tools (one-time)
+			- Secure coding using best practices (every sprint)
+			- Version Control and change tracking
+			- Intellectual property checks
+			- Formal validation and internal review
+			- Conduct Testing
+		Operations
+			- Verification and validation
+			- Review operation readiness
+			- Attack surface review (every bucket)
+			- Configuration manangment and control
+			- Continuous monitoring
+			- Response and release
+			- Incident response plan (one-time)
+			- Final security review (Every sprint)
+			- Responsible disclosure program
+		Disposal
+			- Build and execute disposal plan (one-time)
+			- Sanitize media
+			- Credential confidentiality (Every sprint)
+			- Dispose of hardware and software (one-time)
+			- Ensure information presurvation
+
+	Universal Framework
+		One-time practices
+		Every Sprint practices
+		Every bucket(Multi-sprint) practices
+
+
+SSDLC PART II ---------------------------------------------------------------------------------------------------------
+
+	Initiation Phase
+		- Security training
+			OWASP (Online Web Application Security Project)
+			CWE (Common Weakness Enumeration)
+			CERT(SEI Computer Emergency Response Team) Coding standards
+				- List of secure coding standards and guidelines for programming languages (Java, C++, etc.)
+		- Establish security and privacy requirements
+			Analyze high level vulnerabilities, asset value analysis, potential threats
+		- User risk assessment
+			Asset discovery, Risk identification, Risk measurement analysis, Risk treatment and review
+		- Secure quality gates
+			Minimum Security requirements are met, threat modeling, IP checks, approved tools, peer reviews
+			incedent response plan, disposal plan'
+
+		Tools for Initiation phase
+			- ProductPlan
+			- Jira
+			- IBM Rational Team Concert
+			- P Project
+
+	Developement Phase
+		- Establish Secure Design Requirements
+			set secure privacy design specs, design for auditing/forensics
+		- Select and document security controls
+			security controls must comply with laws and regulations, 
+			Installing firewall, classifying documents
+		- Design security architecture
+			graphically depicted, system auditing enabling trace and reconstruction	
+		- Avoid components with known vulnerabilities
+			Ensure components/libraries/apis etc. are up to date
+		- Deprecate unsafe functions
+			random() compared to secureRandom() in Java 
+			(psuodo-random compared to cyptographically random)
+		- Attack surface analysis
+			Items exposed to outside world (user, app server, database etc.)
+			 in x-axis and method of attack on y-axis (XSS, SQLInjection, Elevation of previledge)
+		- Check container vulnerabilities
+			Kernel exploits, Currupted image, unencypted credentials
+		- Threat modeling
+			Identify assets -> Architecture Overview -> Decompose App -> Identify Threats -> Doc Threats
+			-> Rate threats
+
+		Tools for Development phase
+			Microsoft threat modeling Tool
+			Threat Modeler
+
+	Implementation Phase
+		- Use of approved tools
+			White List (safe) -> GreyList (Not completely safe, need approval) -> Blacklist (unsafe)
+		- Secure coding practices
+			Input validation
+			Output encoding -> untrusted input into trusted form (avoid XSS)
+			Password Managment (MFA, length, complexity etc.)
+		- System version control
+			Versions of software & tools must be approved by security team before use
+		- Static analysis (Static application security testing SAST)
+			Analyzes source code for bugs/vulnerabilites 
+			SonarQube, Fortify, IBM App Scan Source are tools for static analysis
+		- Dynamic analysis (Dynamic application security testing DAST)
+			Analyze app for vulnerabilites during runtime
+			Penetration testing must be performed at least once
+			OWASP ZAP, IBM AppScan, Nessus are tools
+
+	Operations Phase
+		- Operations readiness review
+			Ensure app has not deviated from specs, evaluate integrity of security controls
+			App transitions to production environment - unplanned modification
+		- Attack Surface Review
+			re-review threat models and attack surface measurement to ensure no new vulnerabilites 
+			have been introduced
+			Tools: OWASP Attack Surface Detector, Burp Suite, UpGuard Breach Sight
+		- Configuration Managment and Control
+			enforce configurations and automatically remediate drifts from SLA (Service Level Agreement)
+		- Continuous Monitoring
+			Monitor security controls, Vulnerabilites, and other cyber threats
+			User fails loggin multiple times (above threshold)
+		- Incident Response Plan
+			To deal with emerging security incidents post launch of application
+			eg. Bank deals with DOS attack and deals with it using tools such as
+			Wireshark, Process Monitor, Process Explorer etc. 
+			These tools prevent further damage and restore normal conditions
+		- Final Security Review
+			examine security activities to fix security and privacy issues
+			Options:
+				Passes FSR
+				Passes FSR with exceptions
+				Passes FSR with escalations
+		- Responsible Disclosure Program
+			To securely report the vulnerabilites
+			Org should provide a channel to report 
+			Tools:
+				Splunk (Internal)
+				Nagious (Internal)
+				Elastic search (Internal)
+				Log4j (Internal)
+				Qualys CM, WAS, Certificate View
+				WAF
+				Contrast IAST.
+
+	Disposal Phase
+		- Build and Execute Disposal/Transition Plan
+		- Santize Media
+		- Credential Confidentiality
+			credentials not in service are changed/disabled
+		- Dispose of Hardware and Software
+			Disposal of software should comply with liscense or other agreements
+			Consult ISO for system disposal
+		- Ensure Information Preservation
+			Legal requirements for information retention
+			Methods for retrieving information in the future (eg. encryption)
+
+				
+
+
+
+		
+
+		

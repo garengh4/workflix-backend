@@ -1,0 +1,12 @@
+Changes to profile.ts:
+
+setCurrentProfileId(profileId:string):void {
+  localStorage.setItem("currentProfileId",profileId);
+}
+
+Changes to profile.component:
+
+<button (click)="setCurrentProfileId(id.profileId)" routerLink="/home" mat-button>
+                            {{id.profileId}}
+                        </button>
+

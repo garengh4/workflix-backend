@@ -1,0 +1,252 @@
+Syntax to remember for Front-End:
+
+HOW TO CREATE FORMGROUP-----------------------------------------------------------------------------------------------
+
+	<formName>:FormGroup = new Formgroup({}) //Don't forget {}
+
+	Need to inject FormBuilder to use in ngOnInit()
+
+	HOW DO WE DECIDE THE NAME OF THE FORMCONTROL?
+       -> It has to be the SAME as the instanceVar name inside your DTO
+
+DISPLAYING VALIDATION ERROR MESSAGES ----------------------------------------------------------------------------
+
+	*ngIf = "addNovelForm.get('title')?.errors?.['required']" 
+
+	NOTE: Make sure Validators.required is the FIRST validator in the formbuilder.group({ ... })!!!!!!!!!
+
+	Note: ngFor and ngIf CANNOT be used together, compile error
+
+
+HTML COMPONENT:
+ -----------NOTE: Make sure [formGroup] has LOWERCASE F----------------------------------------------------------------------------
+
+	<form [formGroup]="<formName>" (ngSubmit)="<methodCall>()"> DON'T FORGET TO add () to the method call!!!!
+		div.form-group
+			<input formControlName="<formControlName>" class="form-control"
+			<p *ngIf="<formName>.get('<formControlName>')?.errors or .dirty or .prestine etc.>  ( There are multiple syntax's for this)
+			<p *ngIf="<formName>.controls['<formControlName'>].hasError('required') is another syntax
+
+	<button type="submit" [disabled]="<formName>.invalid>
+
+TS COMPONENT: -----------------------------------------------------------------------------------------------
+
+	this.<formName> = this.formBuilder.group({
+		'...':[...,[Validators...]],
+			...
+		})
+
+	<submitMethod>(){
+		this.successMessage = "";
+		this.errorMessage = "";
+		this.<ServiceName>.<methodCall>(this.<formName>.value).subscribe(
+			response => {
+				...
+			},
+			err => {
+				...
+			}
+		)
+	}
+
+CUSTOM PIPES (FILTERS) -----------------------------------------------------------------------------------------------
+
+	<tr *ngFor= "let <object> of <objectList> | filterPipe : filterCriterea"
+
+	(note: Make sure to create instance variable 'filterCriterea' in the correct component.ts file)
+	(note: Can also pass mutliple values to a pipe using another ':' so eg. filterPipe : filterCrit1 : filterCrit2)
+
+ROUTER NAVIGATION
+
+	<a routerLink="<componentName>" routerLinkActive = "active"> (THIS IS PROBABLY THE SIMPLEST AND IS WHAT IS USED IN THE CAPSTONE)
+	(Note: don't even need 'routerLinkActive')
+	(Note: Can also be applied to buttons and other elements)
+
+	<a [routerLink]="['/<link>', <object>.data]"> DO NOT INCLUDE :consoleName (or variation) in the path FFS!!!!!!!
+
+	OR <a [routerLink]="'<link>'"
+
+	this.router.navigate(['<link>']);
+
+IN THE ROUTING MODULE
+
+	Have the most SPECIFIC path first THEN less specific (otherwise it will find a match and won't go to the more specific path)
+
+	{path: 'pathName', component: componentNameComponent},
+	{path: '', redirectTo: 'home', pathMatch: 'Full'},
+	{path: 'pathName/:variable', component: anotherComponentNameComponent} ==> need ActivatedRoute to be injected (see below)	
+	{path: '**', redirecTo: 'someotherpath'} for Wildcards
+
+	 <router-outlet></router-outlet> in the app.component.html (usually)
+
+
+ROUTER PATH VARIABLES/PARAMETERS -----------------------------------------------------------------------------------------------
+
+	In the constructor, (private route:ActivatedRoute, whatever service dependency you need)
+
+	this.route.params.subscribe(
+		parameters => {
+			this.id = parameters['id']
+			this.<serviceVar>.<serviceMethodCall>.subscribe(...)
+		},
+		err => {
+
+		}
+
+IMPLEMENT HOVER OF TABLE ROWS -----------------------------------------------------------------------------------------------
+	
+	Go to component.css and add
+
+	table tbody tr:hover {
+		...
+	}
+
+CUSTOM VALIDATORS ------------------------------------------------------------------------------------------------------------------
+
+	export class CustomValidators {
+		static <customValidatorName>(input:FormControl) {
+			let <inputVar> = input.value;
+			return true or false based on custom validation
+		}
+	}
+
+	in ngOnInit(): void {}
+
+	use CustomValidators.<customValidatorName> in the form builder grouping
+
+CUSTOM VALIDATOR EXAMPLE -----------------------------------------------------------------------------------------------
+
+	** novels.component.ts **
+
+	validateYear(year:FormControl){
+    	let enteredYear = year.value;
+    	let localYear = new Date().getFullYear();
+    	return  (enteredYear > localYear)? {yearError: { message: "Year nust not be greater than current year!"}} : null;
+  	}
+
+	** novels.component.html **
+
+	*ngIf = "addNovelForm.get('year')?.errors?.['yearError']
+	and to interpolate the message,
+	{{addNovelForm.get('year')?.errors?.['yearError'].message}}
+
+IMPLEMENTING CRUD METHODS -- ADD-----------------------------------------------------------------------------------------------
+
+	use this.<listOfObjects>.push(object) to add the object to the list instance variable in the component.ts file
+
+	HttpClientModule in the app module and inject it into the service class
+
+TABLES-------------------------------------------------------------------------------------------------------------------------------------
+
+	<table>
+		<thead>
+			<tr>
+				<td></td>
+				...
+
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td></td>
+				...
+
+			</tr>
+		</tbody>	
+	</table>
+
+---------FORM ELEMENTS -----------
+	<textarea > is a tag you can use
+
+DETERMINING STYLE BASED ON CASCADING-------------------------------------------------------------------------------------------------------------------------
+
+	The more specific takes precedence ( inline > id > class > tag )
+	If at the same level, then the most RECENT one will be applied
+
+BOOTSTRAP BASICS ---------------------------------------------------------------------------------------------------------------------------------------------
+
+	rows can be put inside columns and columns can be put inside rows but do not put col inside another col and do not put row inside another row
+
+	syntax for col class
+		-> col-<size>-<numOfCols> offset-<numOfOffset>
+
+	checkboxes and radios use
+   	=> form-check, form-check-label, form-check-input
+  	STRUCTURE -------------------------
+  	div.form-check 
+  	   label.form-check-label 
+     	   input.form-check-input 
+
+JAVASCRIPT BASICS --------------------------------------------------------------------------------------------------------------------------------------------
+
+	instance variables do not need let or const but local variables do
+
+	Cannot use ngModel UNTIL we IMPORT FormsModule into our module
+	(when ngModel is used in a form, name attribute should be used)
+
+CREATING DTO CLASSES IN ANGULAR ------------------------------------------------------------------------------------------------------------------------------
+
+	The instance variables of the DTO classes (back-end) have to match the instance variables of the DTO classes (front-end) (name does not)
+
+WHAT TO DO IF YOU NEED TO PASS AN OBJECT THAT HAS OTHER OBJECTS AS PARAMETERS (IE. FestivalOffer has FestivalDTO and ProductDTO) -------------------------
+
+	THE JSON OBJECT IN POSTMAN
+	{
+    	"festival":{
+        	"festivalId": 701006
+    	},
+    	"product": {
+        	"productId":1032
+    	},
+    	"festivalDiscount":25.0,
+    	"offerStatus":"ACTIVE"
+	}
+
+	/* in the component */
+	festivalOfferToAdd:FestivalOffer = new FestivalOffer();
+  	festivalToAdd:Festival = new Festival();
+  	productToAdd:Product = new Product();
+
+	*/IN addFestivalOfferProduct Method */
+	 this.festivalToAdd.festivalId = this.addFestivalOfferForm.value.festivalId;
+    	this.festivalOfferToAdd.festival = this.festivalToAdd;
+    	this.productToAdd.productId = this.addFestivalOfferForm.value.productId;
+    	this.festivalOfferToAdd.product = this.productToAdd;
+    	this.festivalOfferToAdd.festivalDiscount = this.addFestivalOfferForm.value.festivalDiscount;
+    	this.festivalOfferToAdd.offerStatus = this.addFestivalOfferForm.value.offerStatus;
+
+REACTIVE FORMS USING ngValue (SELECT INPUT) ----------------------------------------------------------------------------------
+
+	[ngValue]="festival.festivalId" in <select> tag
+
+UPDATE EXAMPLE -----------------------------------------------------------------------------------------------------------------------------------------
+
+ updateAuthor(){​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​
+    this.errorMessage="";
+    this.successMessage="";
+    this.authorToUpdate=new Author();
+    this.authorsService.updateAuthor(
+                                    this.updateAuthorForm.get('id')?.value,
+                                    this.updateAuthorForm.get('name')?.value 
+                                    ).subscribe(
+      updatedAuthor=>{​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​
+        this.successMessage="Successfully update Author Id: " + updatedAuthor.id + " with new name: "
+                                 + updatedAuthor.name;
+        // need to replace the author that was updated in the authors array
+        this.authors = this.authors.map(auth => auth.id==updatedAuthor.id ? updatedAuthor : auth);
+        
+      }​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​,
+      error => {​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​
+        this.errorMessage="Could not updated author: "+error.error.errorMessage;
+      }​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​
+    )
+  }​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​
+
+CURRYING FUNCTIONS (FUNCTIONAL PROGRAMMING) -------------------------------------------------------------------------------------------------------------------------------------------------------
+
+	see this article (https://www.jondjones.com/frontend/javascript/functional-programming/javascript-currying-what-is-the-point-of-currying-javascript-functions#:~:text=The%20concept%20of%20currying%20is%20a%20key%20part,that%20takes%20one%20argument%20at%20a%20time%20instead.)
+
+	General idea is to break up a function that takes many parameters into several functions that take one parameter
+
+	Used if need to call same function with the same parameters many times
+

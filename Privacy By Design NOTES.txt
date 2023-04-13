@@ -1,0 +1,186 @@
+Privacy by design Notes
+
+	Personal Data vs Sensitive Personal Data
+		- Examples for Personal Identifiable Information (PII)
+			- name, contact details, DoB, Gender, email, photograph, Marital Status, cookies, Ip Address
+			location details, CCTV images, website visit logs
+		- Examples for Sensitive Personal Information (SPI)
+			- health/medical data, Criminal record, biometric, financial details
+
+	What is data processing?
+		- recording, usage, collection, viewing, storage, organizing, disclosure, alteration, retrivial,
+		destruction etc.
+
+	Data Privacy Terminologies
+		- Controller: Entity that determines the purpose and means of data processing
+		- Processor: Entity that processes data on behalf of data controller
+
+	Data Privacy Principles
+		- Accountability
+		- Fair, Lawful, Transparent
+		- Security
+		- Storage limitation
+		- Accuracy
+		- Data minimization
+		- Purpose limitation
+
+	Privacy by Design - 7 Principles
+		- Proactive not reactive; Preventative not remedial 
+		- Privacy as the Default Setting
+		- Privacy Embedded into Design (Not bolted on as add-ons)
+		- Full Functionality: Positive-sum (win-win) NOT zero-sum
+		- Respect for User Privacy: Keep it User-centric (Gives control of their data to users and 
+			garuntees privacy of processing)
+		- Visibility and Transparency: Keep it open
+		- End-to-end Security: Full Lifecycle Protection
+		
+	Privacy by Design Objectives
+		- Predictability: Both application owners and data subjects have complete visibility of what is 
+		happening with the personal data
+		- Manageability: Is the control offered to the data subject over his/her data on all layers of 
+		the data life cycle?	
+		- Disassociability: anonymization, de-identification, pseudonymization, data masking, cryptography
+
+
+	PbD Implementation
+		- Unlinkability -> Data Oriented (minimize, hide, seperate, abstract)
+		- Intervenability -> Process Oriented (Control, Enforce, Demonstrate)
+		- Transparancy -> Process Oriented (Inform)
+
+		Privacy Design Patterns
+			- Resusuable components
+			- Privacy Enhancement Technologies (PET)
+
+	Minimize Tactics
+		- Select: Only relevant information collected and processed (ie. whitelist) 
+			-> Collect only date a month of birth. Year is not required
+		- Exclude: Exclude data subjects and attributes unless absolutely necessary (ie. blacklist) 
+			-> Not collecting emergency contact details during application stage
+		- Strip: Partially eliminate personal data as soon as it is no longer necessary 
+			-> Collecting address details only when customer is making a purchase
+		- Destroy: Completely delete personal data as soon as it is no longer needed such that it cannot 
+			be recovered
+			-> If DB table has several PII with different retention periods, need to seperate into differnt tables faciliate deletion
+
+		Design Patterns:
+			- Online template to capture only PII that is necessary.
+			- Auto data deletion script
+			- Psuedonymization
+			- Anonymization
+			- Privacy settings: Opt in/ Opt out for marketing
+			- Cookie Controls
+			- Dynamic location granularity
+			- Do Not Track
+		
+	Seperate Tactics
+		- Isolate: Collect and process personal data in different databases or applications 
+			-> Fingerprint biometric is stored on the card and not on central servers
+		- Distribute: Distribute data over different physical locations using databases and systems 
+			-> CCTV footage is stored in respective country servers
+
+		Design Patterns:
+			- Decentralize or destributed architecture
+			- Secure multi-party computation
+			- Shift some amount of the processing of personal data to the user-trusted environments (eg. their own devices)
+
+	Abstract Tactics:
+		- Summarize: Generalize values by using ranges rather than exact values 
+			-> Use Age range
+		- Group: Aggregate information 
+			-> location data need not be exact
+		- Perturb: Use approximate values or modify real values with random noise 
+			-> Use synthetic data for testing
+
+		Design Patterns:
+			- Dynamic location granularity
+			- K-anonymity by generalization
+			- Differential privacy -> adding noise to data set
+			- Homomorphic encryption allows one to perform calculations on encrypted data without learnign the real data themselves
+
+	Hide Tactics:
+		- Restrict: Access control policy on "Need to know" 
+			-> Supporting documents for sick leave on GLS should be accessible only to HR
+		- Obfuscate: Encryption and hashing techniques to make data unintellibigle while at rest or in transit 
+			-> IRM on downloadable reports containgin PII
+		- Dissociate: Eliminate the link between datasets 
+			-> Encryption of health data in database
+		- Mix: Group together information on various subjects to avoid correlations 
+			-> On iTravel, Manager who approves travel request need not see employees' address which can only be shown to cab driver
+
+		Design Patterns:
+			- Encryption
+			- Access Control
+			- Data masking
+			- Onion Routing 
+
+	Inform Tactics:
+		- Supply: Providing data subjects with details on how data is processed/used 
+			-> An email is sent to the employee by HR to ensure their data is up to date and accurate
+		- Explain: in clear language, what data is recorded and for what purpose, how long it's retained etc. 
+			-> Privacy Pictograms to make it easier to understand
+		- Notify: In case of data breach, notify data subjects 
+			-> Have a notification icon in the status bar whenever an application accesses the location service
+		- Alert: Provide real-time notification when personal data is being collected
+
+		Design Patters:
+			- Website privacy policy
+			- Privacy notice/consent at the point of data collection
+			- Layered Privacy Policy
+			- Data breach notification
+			- Privacy Dashboard
+			- Privacy icons
+
+	Control Tactics:
+		- Consent: Ask users explicit consent for obtaining and processing information. Should be possible 
+			to withdraw consent at any time
+			-> Sending newsletters to customers only if they opt-in
+		- Choose: Offer users a real choice 
+			-> If a website is collecting geo location, or a website palces 3rd party cookies, they must be based on choice and consent
+		- Update: Offer users the means to update and review the personal information about themselves 
+			-> When shopping portal obtains wedding anniversary date, from a buyer, it must be based on consent and should be optional
+		- Retract: Offer uses a means to withdraw or ask for deletion of their personal data
+
+		Design Patterns:
+			- Selective disclosure
+			- Privacy settings: Opt-in/Opt-out for marketing
+			- Cookie Control banners
+			- Consent management
+			- Privacy dashboard
+			- DSR management
+
+	Enforce Tactics:
+		- Create: Organization should commit to privacy, take responsiblity, create a privacy policy,  
+			assign resources to execute this policy and have training and awareness around privacy 
+			-> implementing privacy management models such as ISO 27701:2019 standard
+		- Maintain: Implement necessary controls to maintain the privacy policy and ensure third parties comply
+			-> Perform privacy impact assessments
+		- Uphold: Verify privacy policy regularily and update it's implementation whenever necessary
+
+		Design Patterns:
+			- DP Office
+			- PIA tools
+			- Governance
+			- Access Control
+			- Obligation Management
+
+	Demonstrate Tactics:
+		- Record: Maintain records of processing activities, collect logs, record consent taken and acknowledgement 
+			of notices
+			-> get certified against recognized privacy standard. Benchmark with other organizations that operate in same business context
+		- Audit: Carry out indepenedent review of the degree of compliance with org DP policy and
+			regulatory and contractual obligations
+		- Report: Report processing activies to DPA where required
+
+		Design Patterns:
+			- PII/SPI Logging
+			- Consent records
+			- Audits
+			- Data inventory
+
+
+
+
+
+
+
+

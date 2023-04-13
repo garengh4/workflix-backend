@@ -1,0 +1,18 @@
+Useful Angular Libraries
+
+ - Angular Material
+
+ - ng-bootstrap (should be already in use)
+
+ - ngx-bootstrap (extends ng-bootstrap as far as I can tell)
+
+ - PrimeNG (useful for data tables, sorting, filtering etc.)
+	=> DynamicDialog and DataView may be especially useful for EKart Project
+	=> Divider may be useful for login + sign up
+	=> Table/sort may be useful
+	=> Sticky is also very nice for tables
+	=> InputGroup can be useful for username and password input fields
+	=> Password will be useful for password input fields (obviously). 
+		Has nice strenth meter plus visibility toggle
+
+
