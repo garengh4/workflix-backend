@@ -21,9 +21,9 @@ public class CategoryAPI {
     private CategoryService categoryService;
 
     @PostMapping(value= "/create")
-    public ResponseEntity<CategoryDTO> createCategory(@RequestBody CategoryDTO categoryDTO) throws WorkflixException {
-        categoryService.createCategory(categoryDTO);
-        return new ResponseEntity<>(HttpStatus.OK);
+    public ResponseEntity<String> createCategory(@RequestBody CategoryDTO categoryDTO) throws WorkflixException {
+        String msg=categoryService.createCategory(categoryDTO);
+        return new ResponseEntity<>(msg,HttpStatus.OK);
     }
 
 

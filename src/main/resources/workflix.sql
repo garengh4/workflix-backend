@@ -1,4 +1,4 @@
-CREATE DATABASE IF NOT EXIST workflix;
+CREATE DATABASE IF NOT EXISTS workflix;
 USE workflix;
 
 CREATE TABLE login(
@@ -25,8 +25,8 @@ CREATE TABLE category (
     category_name VARCHAR(50),
     profile_id VARCHAR(50),
     FOREIGN KEY (profile_id) REFERENCES profile(profile_id));
-CREATE TABLE post (
-    post_id BIGINT AUTO_INCREMENT PRIMARY KEY,
+CREATE TABLE blog (
+    blog_id BIGINT AUTO_INCREMENT PRIMARY KEY,
     content longtext,
     category_id BIGINT,
     FOREIGN KEY (category_id) REFERENCES category(category_id),

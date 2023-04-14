@@ -1,10 +1,7 @@
 package com.infy.workflixbackend42.service;
 
 import com.infy.workflixbackend42.dto.CategoryDTO;
-import com.infy.workflixbackend42.dto.PostDTO;
 import com.infy.workflixbackend42.entity.Category;
-import com.infy.workflixbackend42.entity.InputFile;
-import com.infy.workflixbackend42.entity.Post;
 import com.infy.workflixbackend42.exception.WorkflixException;
 import com.infy.workflixbackend42.repository.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +19,7 @@ public class CategoryServiceImpl implements CategoryService{
     @Autowired
     private CategoryRepository categoryRepository;
 
-    public void createCategory(CategoryDTO categoryDTO)throws WorkflixException {
+    public String createCategory(CategoryDTO categoryDTO)throws WorkflixException {
        Optional<Category> categoryOptional= Optional.ofNullable(categoryRepository.
                findByCategoryNameAndProfileId(categoryDTO.getCategoryName(),categoryDTO.getProfileId()));
        if(categoryOptional.isPresent()){
@@ -30,6 +27,7 @@ public class CategoryServiceImpl implements CategoryService{
        }
         Category category=this.mapFromDTOToCategory(categoryDTO);
         categoryRepository.save(category);
+        return categoryDTO.getCategoryName()+" create successfully!";
     }
 
 

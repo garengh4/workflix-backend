@@ -1,7 +1,6 @@
 package com.infy.workflixbackend42.entity;
 
 import javax.persistence.*;
-import java.io.Serializable;
 import java.util.List;
 
 @Entity
@@ -18,8 +17,8 @@ public class Category {
     @Column(name="profile_id")
     private String profileId;
     @OneToMany(fetch = FetchType.LAZY)
-    @JoinColumn(name = "post_id")
-    private List<Post> posts;
+    @JoinColumn(name = "blog_id")
+    private List<Blog> blogs;
 
     public Long getCategoryId() {return categoryId;}
 
@@ -36,12 +35,12 @@ public class Category {
     public void setProfileId(String profileId) {this.profileId = profileId;}
 
 
-    public List<Post> getPosts() {
-        return posts;
+    public List<Blog> getBlogs() {
+        return blogs;
     }
 
-    public void setPosts(List<Post> posts) {
-        this.posts = posts;
+    public void setBlogs(List<Blog> blogs) {
+        this.blogs = blogs;
     }
 
 

@@ -3,15 +3,14 @@ package com.infy.workflixbackend42.entity;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
-import java.time.Instant;
 
 @Entity
-@Table(name ="post")
-public class Post {
+@Table(name ="blog")
+public class Blog {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="post_id")
-    private Long postId;
+    @Column(name="blog_id")
+    private Long blogId;
     @NotBlank
     @Column(name = "title")
     private String title;
@@ -19,16 +18,15 @@ public class Post {
     @Column(name = "content")
     @NotEmpty
     private String content;
-    @ManyToOne(cascade=CascadeType.ALL)
-    @JoinColumn(name = "category_id")
-    private Category categoryId;
 
-    public Long getPostId() {
-        return postId;
+    private Long categoryId;
+
+    public Long getBlogId() {
+        return blogId;
     }
 
-    public void setPostId(Long postId) {
-        this.postId = postId;
+    public void setBlogId(Long blogId) {
+        this.blogId = blogId;
     }
 
     public String getTitle() {
@@ -47,11 +45,11 @@ public class Post {
         this.content = content;
     }
 
-    public Category getCategoryId() {
+    public Long getCategoryId() {
         return categoryId;
     }
 
-    public void setCategoryId(Category categoryId) {
+    public void setCategoryId(Long categoryId) {
         this.categoryId = categoryId;
     }
 
