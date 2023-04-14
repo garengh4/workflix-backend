@@ -46,14 +46,22 @@
 			<version>8.0.30</version>
 		</dependency>
 
-		<!-- ############## azure sql system ##############	-->
+		<!-- ############################ swagger ############################	-->
+		<dependency>
+			<groupId>org.springdoc</groupId>
+			<artifactId>springdoc-openapi-ui</artifactId>
+			<version>1.7.0</version>
+		</dependency>
+
+		<!-- ############################ azure cloud sql ############################	-->
 		<dependency>
 			<groupId>com.microsoft.sqlserver</groupId>
 			<artifactId>mssql-jdbc</artifactId>
 			<scope>runtime</scope>
 		</dependency>
 
-		<!-- ############## google file system ##############	-->
+		<!-- ############################ gcp file system ############################	-->
+
 		<dependency>
 			<groupId>com.google.cloud</groupId>
 			<artifactId>spring-cloud-gcp-starter-storage</artifactId>
