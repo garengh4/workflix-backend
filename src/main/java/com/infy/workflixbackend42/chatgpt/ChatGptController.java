@@ -1,6 +1,5 @@
 package com.infy.workflixbackend42.chatgpt;
 
-import com.infy.workflixbackend42.dto.ChatGptFormInputDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -31,7 +30,7 @@ public class ChatGptController {
     }
 
     @PostMapping(path = "/")
-    public String chat(Model model, @ModelAttribute ChatGptFormInputDTO dto) {
+    public String chat(Model model, @ModelAttribute CompletionResponse.ChatGptFormInputDTO dto) {
         try {
             model.addAttribute("request", dto.prompt());
             model.addAttribute("response", chatWithGpt3(dto.prompt()));

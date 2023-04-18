@@ -13,4 +13,6 @@ public record CompletionResponse(Usage usage, List<Choice> choices) {
     record Usage(int total_tokens, int prompt_tokens, int completion_tokens) {}
 
     record Choice(String text) {}
+
+    public static record ChatGptFormInputDTO(String prompt) {}
 }
