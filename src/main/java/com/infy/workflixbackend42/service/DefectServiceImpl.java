@@ -40,6 +40,7 @@ public class DefectServiceImpl implements DefectService{
         defect.setPriority(defectDTO.getPriority());
         defect.setStatus(defectDTO.getStatus());
         defect.setDescription(defectDTO.getDescription());
+        // to extract new GENERATIONTYPE.AUTO defect.id
         Defect defectFromDB = defectRepository.save(defect);
         return defectFromDB.getDefectId();
     }
