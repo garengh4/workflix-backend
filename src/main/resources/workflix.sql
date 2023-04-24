@@ -34,9 +34,21 @@ CREATE TABLE post (
 
 
 
+CREATE TABLE defect(
+    defect_id INT PRIMARY KEY,
+    category VARCHAR(50),
+    priority INT,
+    status VARCHAR(50),
+    description VARCHAR(1000)
+);
+
+
 INSERT INTO login (login_id, password) VALUES ('doe@example.com', 'Doe@123');
 INSERT INTO login (login_id, password) VALUES ('smith@example.com', 'Smith@123');
 
 INSERT INTO profile (profile_id,login_id,first_name,last_name) VALUES ('1','doe@example.com','Jane','Doe');
 INSERT INTO profile (profile_id,login_id,first_name,last_name) VALUES ('2','smith@example.com','John','Smith');
 INSERT INTO profile (profile_id,login_id,first_name,last_name) VALUES ('3','doe@example.com','Cathy','Doe');
+
+INSERT INTO defect (defect_id, category, priority, status, description ) VALUES (3423, 'UI',1,'open','slider bar not working in homepage');
+INSERT INTO defect (defect_id, category, priority, status, description ) VALUES (2952, 'Functional',3,'open','pdf image not centering');
